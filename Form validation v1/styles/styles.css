@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+}
+
+input[type="submit"] {
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+#name~span {
+  display: none;
+} 
