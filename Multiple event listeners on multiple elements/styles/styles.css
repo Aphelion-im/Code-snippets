@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.listener,
+.listener2 {
+  width: 1000px;
+  border: 1px solid black;
+  text-align: center;
+  margin: 0 auto;
+  padding: 16px;
+}
