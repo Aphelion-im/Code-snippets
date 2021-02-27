@@ -1,2 +1,2 @@
-# Miscellaneous
-Miscellaneous, experimental scripts
+# Miscellaneous code snippets
+Miscellaneous, experimental scripts & code snippets
