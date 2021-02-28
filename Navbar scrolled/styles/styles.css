@@ -1,0 +1,28 @@
+*,
+*::before,
+::after {
+  box-sizing: border-box;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+  width: 100%;
+}
+
+.scrolled {
+  background: rgba(0, 0, 0, 1);
+  transition: background-color 500ms ease;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 8px;
+}
