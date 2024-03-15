@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Swap Image Routine</title>
+	
+	<script type="text/javascript">
+		
+		// imagepad variabele kan verschillen per pagina
+		var imgPad = "img/";
+		
+		// BBC ---- Basis Browser Check
+		var canSwap = document.images? true : false;
+		
+		
+		// SIR ---- Swap Image Routine
+		function swapImage( welkPlaatje, srcPlaatje ){
+			// welkPlaatje en srcPlaatje zijn lokale variabelen die ik alleen in deze functie kan gebruiken
+			if( canSwap ){
+				// stellen de bestandsnaam samen
+				var bestandsNaam = imgPad + welkPlaatje + "_" + srcPlaatje + ".png";
+				
+				// verander dan de source
+				document.getElementById( welkPlaatje ).src = bestandsNaam;
+			
+			}
+		
+		}
+		
+		// PIF ---- Preload Images Functie
+		var imageList = new Array( "play_uit_hi.png", "play_act_hi.png", "pause_uit_hi.png", "pause_act_hi.png" );
+		
+		var preloadedList = new Array();
+		
+		function preloadImages(){
+		
+			for( var i = 0; i < imageList.length; i++ ){
+			
+				preloadedList[i] = new Image();
+				preloadedList[i].src = imgPad + imageList[i];
+				
+			}
+			alert( "geladen" );
+		}
+		
+		window.onload = preloadImages;
+		
+	</script>
+	
+</head>
+<body>
+
+
+	<a href="#" 
+		onmouseover="swapImage( 'play', 'uit_hi' );" 
+		onmouseout="swapImage( 'play', 'uit_no' );" 
+		onmousedown="swapImage( 'play', 'act_hi' );"
+		onmouseup="swapImage( 'play', 'uit_hi' );"><img src="img/play_uit_no.png"  width="45" height="52" alt="" name="play" id="play" /></a>
+	
+	<a href="#" 
+		onmouseover="swapImage( 'pause', 'uit_hi' );" 
+		onmouseout="swapImage( 'pause', 'uit_no' );" 
+		onmousedown="swapImage( 'pause', 'act_hi' );"
+		onmouseup="swapImage( 'pause', 'uit_hi' );"><img src="img/pause_uit_no.png" width="45" height="52" alt="" id="pause" name="pause" /></a>
+
+
+</body>
+</html>

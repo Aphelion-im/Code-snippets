@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>If Statement</title>
+
+        <script>
+        
+			var zekerweten = confirm( "Weet u het zeker?" );
+
+			var naam = prompt( "Wat is uw naam?" );
+
+        </script>
+
+    </head>
+    <body>
+        
+        <h1>Met een if statement kun je controles uitvoeren</h1>
+
+        <script>
+
+        	if( !zekerweten ){
+        		document.write( "Zekerweten is True" );
+        	}else {
+
+                document.write( "Zekerweten is flase" + "<br>" );
+
+            }
+
+        	if( naam == "" || naam == null){
+
+        		naam = prompt("Ik wil echt een naam hebben!!!!");
+        		document.write( "<h2>Hallo " + naam + "</h2>" );
+        		
+        	} else {
+
+        		document.write( "<h2>Hallo " + naam + "</h2>" );
+
+        	}
+        </script>
+        
+    </body>
+</html>

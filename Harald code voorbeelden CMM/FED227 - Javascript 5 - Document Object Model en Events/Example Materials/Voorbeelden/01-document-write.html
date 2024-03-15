@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Document Write</title>
+
+        <!-- embedded javascript -->
+        <script>
+
+        	document.write( "Dit is een regel text geschreven door JS vanuit de head van de pagina!<br>" );
+
+        </script>
+
+    </head>
+    <body>
+        
+        <!-- embedded javascript -->
+        <script>
+
+        	document.write( "Dit is een regel text geschreven door JS vanuit de body!" );
+
+        </script>
+
+		<!-- inline javascript -->
+		<h1><script>document.write("Hallo Kasper")</script></h1>
+
+		<!-- eventbased javascript -->
+        <a href="#" onclick="document.write( 'Dit statement herschrijft de hele pagina.' )">Klikmij</a>
+
+    </body>
+</html>

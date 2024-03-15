@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-16: Events</title>
+		<link href="css/event-styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- 
+			Events koppelen aan een HTML-element noemen we 'binden'.
+			Eventbinding kan op verschillende manieren gebeuren.
+			
+			Methode 1: HTML Event Handlers 
+			Niet gebruiken:  Deze methode is achterhaald. We willen natuurlijk helemaal
+			geen JavaScript in onze HTML-code hebben staan vanwege de principes
+			graceful degredation en progressive enhancement.
+		 -->
+		<button role="button" aria-hidden="true" id="buttonForBlue">Move ballBlue<br>Methode #1</button>
+		<button role="button" aria-hidden="true" id="buttonForGreen">Move ballGreen<br>Methode #2</button>
+		<button role="button" aria-hidden="true" id="buttonForRed">Move ballRed<br>Methode #3</button>
+		
+		<div id="balls">
+			<div id="ballBlue" class="ball">#1</div>
+			<div id="ballGreen" class="ball">#2</div>
+			<div id="ballRed" class="ball">#3</div>
+			<div id="ballYellow" class="ball">#4</div>
+			<div id="ballMagenta" class="ball">#5</div>
+		</div>
+		
+		<button role="button" aria-hidden="true" id="buttonForMagenta">Stop de magenta ball!</button>
+		
+		<script>
+			/* 	======================================================================	
+				Initialise
+			=========================================================================== */
+			var buttonForBlue = document.getElementById("buttonForBlue");
+			var buttonForGreen = document.getElementById("buttonForGreen");
+			var buttonForRed = document.getElementById("buttonForRed");
+		
+			var ballBlue = document.getElementById("ballBlue");
+			var ballGreen = document.getElementById("ballGreen");
+			var ballRed = document.getElementById("ballRed");
+			var ballYellow = document.getElementById("ballYellow");
+		
+			// Bij het laden van de browser de style.left instellen op 0 voor elke bal. 
+			ballBlue.style.left = "0px";
+			ballGreen.style.left = "0px";
+			ballRed.style.left = "0px";
+			ballYellow.style.left = "0px";
+			ballYellow.style.top = "0px";
+		
+			// moveBall function
+			function moveBall(welkebal, hoeveelPixels){
+				/*
+					moveBall() verwacht twee argumenten:
+					1. welkbal (moet een HTML-object zijn)     //reference!
+					2. hoeveelPixels (moet een number zijn)    //integer
+				*/
+		
+				var currentLeft = parseInt(welkebal.style.left); // Huidige left waarde opvragen en omzetten naar een number datatype. Bijvoorbeeld de string "50px" omzetten naar number 50.
+				var newLeft = currentLeft + hoeveelPixels; // Huidige left waarde ophogen met de opgegeven hoeveelPixels.
+			
+				if(newLeft <(window.innerWidth -50)){ // Alleen verder verplaatsen als het ball niet uitbeeld dreigt te raken.
+					welkebal.style.left = newLeft + "px"; // Style updaten.
+				} else{ // Anders het ball terugzetten naar 0
+					welkebal.style.left = 0 + "px";
+				}
+			}
+
+			function moveBallUp(welkeBal, hoeveelPixelsTop){
+				var currentTop = parseInt(welkeBal.style.top);
+				var newTop = currentTop + hoeveelPixelsTop;
+				if(newTop < (window.innerHeight - 50)){
+					welkeBal.style.top = newTop + 'px';
+				}else{
+					welkeBal.style.top = 0 + 'px';
+				}
+			}
+
+			buttonForBlue.onclick = function(){
+				moveBallUp(ballBlue, 20);
+				moveBall(ballBlue, 20);
+			}
+			
+			
+	
+			/* 	======================================================================	
+				Methode #2: DOM event handler
+			=========================================================================== */
+			/* 
+				Compatible met alle moderne browsers.
+				Nadeel: Je kunt geen argumenten meegeven aan de functie!
+				Oplossing: We moeten een anonieme functie gebruiken als een soort 'wrapper'.
+			*/
+		
+            buttonForGreen.onclick = function(){
+                moveBall(ballGreen, 80);
+            }
+
+			// buttonForBlue.onclick = function(){
+			// 	moveBall(ballBlue, 100);
+			// }
+		
+		
+			/* 	======================================================================	
+				Methode #3: addEventListener
+			=========================================================================== */
+			/* 
+				Dit is de aangeraden methode.
+				De .addEventListener() methode vereist 3 argumenten:
+			
+				1. 	Het event waarnaar geluisterd moet worden.
+				2. 	De functie die moet worden uitgevoerd als het event plaats vindt.
+				3. 	Event flow: een boolean die bepaald hoe de event flow plaats vindt. 
+					(zie boek en example materials). 
+					De default is false (event bubbling: van meest specifieke tag naar 
+					minst specifieke tag).
+			*/
+		
+			buttonForRed.addEventListener('click', function(){
+                moveBall(ballRed, 40);
+            },false); //false is default
+			
+			/* 	======================================================================	
+				Het Event Object
+			=========================================================================== */
+			/*	Elke keer als er een event plaats vindt is er een event object.
+				Het event object bevat handige informatie zoals:
+			
+				- Welk element het event triggert.
+				- Welke toetsenbord knop de gebruiker indrukte bij een keypress event.
+				- Welk gedeelte van de viewport was aangeklikt.
+				
+				Zie je boek voor handige properties van het event object (blz 262).
+				
+			*/
+	
+			function showEventObject(e){
+//                console.log(e);
+                console.log(e.type, e.target, e.target.id)
+            };
+            
+            function showObject(myObject){
+                console.log(myObject);
+            };
+            
+            ballRed.addEventListener('click', function(e){ //de e word meteen een event na AddEventListener
+                showEventObject(e);
+                showObject(this); //e.target in dit geval hetzelfde als this.
+                e.preventDefault() //bijvoorbeeld submit voorkomen voordat formulier is ingevud
+                e.stopPropagation() //voorkomt dat je op alle onderliggende objecten klikt 
+            });
+            
+            
+			
+			/* 	======================================================================	
+				KeyCodes van keypress, keyup en keydown events
+			=========================================================================== */
+			
+			/*
+				if(e.keyCode == 37){ // left = 37
+					var newLeft = parseInt(ballYellow.style.left) - 5 + "px";
+					ballYellow.style.left = newLeft;
+				}
+			*/
+            
+            window.addEventListener('keydown', function(e){
+                //console.log(e.code, e.keyCode);
+                if(e.keyCode == 37){ //left == 37
+                    var newLeft = parseInt(ballYellow.style.left) - 5 + "px";
+                    ballYellow.style.left = newLeft;
+                }
+                
+                if(e.keyCode === 39){ //right == 39
+                    var newLeft = parseInt(ballYellow.style.left) + 5 + "px";
+                    ballYellow.style.left = newLeft;
+                }
+                
+                if(e.keyCode === 38){ //right == 39
+                    var newLeft = parseInt(ballYellow.style.top) - 5 + "px";
+                    ballYellow.style.top = newLeft;
+                }
+                
+                if(e.keyCode === 40){
+                   var newLeft = parseInt(ballYellow.style.top) + 5 + "px";
+                    ballYellow.style.top = newLeft;
+                }
+            
+            });
+			
+			/* 	======================================================================	
+				window.onload
+			=========================================================================== */		
+			window.onload = function(){
+				// Inits			
+				var ballMagenta = document.getElementById("ballMagenta");
+				var moveBy = 0;
+				ballMagenta.style.left = "0px";
+				
+				// Functions
+				function moveAutomatically(){
+					moveBy += 2;
+                    ballMagenta.style.left = moveBy + 'px';
+                    if(moveBy > 700){
+                        moveBy = 0;
+                    }
+				}
+                
+                var timerObj = setInterval(moveAutomatically, 30); 
+                //elke 30 milliseconden roept deze functie moveAUtomatically. 
+				
+				// Events
+				document.getElementById("buttonForMagenta").addEventListener('click', function(){
+                    if(timerObj){
+                        clearInterval(timerObj);
+                        timerObj = null;
+                        this.textContent = 'Start de magenta ball!';
+                    }else{
+                        timerObj = setInterval(moveAutomatically, 30);
+                        this.textContent = 'stop de magenta ball!';
+                    }
+				}, false);
+			};
+			//ballMagenta bestaat hier niet. Hij bestaat alleen IN de functie. 
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

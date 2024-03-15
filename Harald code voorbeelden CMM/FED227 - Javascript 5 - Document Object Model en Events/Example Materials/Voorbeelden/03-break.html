@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Do While loop met break</title>
+
+    </head>
+    <body>
+        
+        <h1>Met een Do While loop kun je herhalingen uitvoeren zolang er een conditie bestaat. De break statement kun je gebruiken om de lus te breken</h1>
+
+         <script>
+         	// initialiseer de var
+			var password;
+
+			do{
+
+				password = prompt( "Voer uw password in" );
+
+				if( password == null ){
+					
+					alert( "Dit is niet het goede password" );
+					break;
+
+				}
+
+			} while( password != "kasper" );
+
+			document.write( "Uw password is: " + password  );
+
+        </script>
+
+        
+    </body>
+</html>

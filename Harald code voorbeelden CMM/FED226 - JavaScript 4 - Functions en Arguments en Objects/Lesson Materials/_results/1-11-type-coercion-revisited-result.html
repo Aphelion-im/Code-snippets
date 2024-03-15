@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-11: Type coercion (revisited)</title>
+	</head>
+	<body>
+		<header id="header">
+			Ik ben een header.
+		</header>	
+		<script>
+			/* 	======================================================================
+				Type coercion (revisited)
+			=========================================================================== */
+			/* 
+				Elke waarde wordt behandeld als true of false. Dit heeft interessante
+				effecten als je twee verschillende data types met elkaar gaat vergelijken.
+			*/	
+			var supermarkt = true;
+			supermarkt = "Albert Heijn";
+			
+			if(supermarkt){ console.log("JA! (1)"); } // Deze if statement resulteert in true. Want supermarkt bestaat.
+			if(supermarkt == true){ console.log("JA! (2)"); } // De if statement resulteert in false! Want de string waarde van supermarkt is niet gelijk de boolean waarde true!
+			
+			
+			/* 	======================================================================
+				Falsy values
+			=========================================================================== */
+			
+			if(false == false){ } // TRUE! Is false gelijk aan false? Ja, dat is zo. Dus true.
+			if(0 == false){ }  // TRUE!
+			if("" == false){ } // TRUE!
+			if(10/'score'){ } /* Dit geeft NaN als antwoord (Not a Number) */
+			if(5-5){ } /* Dit geeft 0 (dus false) als antwoord. Let op: Eerst wordt de expressie berekend. Het resultaat van de expression (0) controleren we pas daarna met de if statement. */
+			
+			var unassignedVar;
+			if(unassignedVar == undefined){ }  /* TRUE als antwoord. */
+			if(unassignedVar == false){ } /* unassignedVar is NIET false, hij is undefined. */
+			
+		
+		
+			/* 	======================================================================
+				Truthy values
+			=========================================================================== */
+			if(true == true){} // TRUE! Is true gelijk aan true? Ja, dat is zo. Dus true.
+			if(1 == true){} // TRUE!
+			if("0" == true){} // De string "0" is wel een truthy value, maar de comparison met true is false. 
+			if('carrot' == true){ } // Wederom: een string is een truthy value, maar de comparison met true is false.
+			if(10/10 == true){ } // TRUE! Wederom: Eerst wordt de expressie berekend. Het resultaat wordt in de if control statement geevalueerd.
+			
+			/* 	======================================================================
+				Equality
+			=========================================================================== */
+			/*
+				Verkom deze chaos door de equality operators te gebruiken. Deze checken
+				namelijk ook of de data types overeenkomen.
+				
+				=== strictly equal to
+				!== not strictly equal to
+			*/
+			if('3' === 3){ /* Is de string '3' gelijk aan de number 3? ... NEE!!!!! Ander data type, dus FALSE. */ } 
+			if('3' !== 3){ } // TRUE! De string '3' is NIET exact gelijk aan de integer 3.
+			if("3" === '3'){} // TRUE!
+			
+			
+			
+			/* 	======================================================================
+				Existence
+			=========================================================================== */
+			/* Existence controleren moet je NIET zo doen! */
+			if(document.getElementById("header") == true){
+				/* 	DIT WERKT NIET! document.getElementById("header") is een object.
+					Objecten zijn NIET gelijk aan de boolean waarde 'true'! */
+			}
+			
+			/* Als je wilt controleren of een object bestaat doe je dat zo: */
+			if(document.getElementById("header")){
+				// De tag met de id genaamd header bestaat!
+			} else {
+				// Niet gevonden: we gaan iets anders doen.
+			}
+		</script>
+	</body>
+</html>

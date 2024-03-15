@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-12: Functions</title>
+	</head>
+	<body>
+		<div id="blaat">Klik op mij!</div>
+		<script>
+			/* 	======================================================================
+				Functions
+			=========================================================================== */
+			/* 	Een functie is een op zichzelf staand script dat kan worden hergebruikt.
+				Functies maken je code overzichtelijker en modulair. 
+				Goede functies kun je ook in andere projecten weer overnemen en ze daar gebruiken!
+				
+				Een functie kan ergens anders in je script (meerdere keren) worden aangeroepen. Het aanroepen van een functie noemen we een function call.
+				Als een functie wordt aangeroepen wordt de code tussen de curly braces {} uitgevoerd.
+				Daarna geeft de functie ALTIJD een waarde terug. Dit noemen we de return value van de function.
+			*/
+				
+			
+			function naamVanJeFunctie(){} // Function declaration.
+			var resultaat = naamVanJeFunctie(); // Een functie geeft ALTIJD een waarde terug (de return value genoemd). In dit geval slaan we het resultaat van de functie op in de variabele resultaat. Het resultaat van het uitvoeren van deze functie is 'undefined' omdat het niets terug geeft.
+			console.log("naamVanJeFunctie: " + resultaat); // undefined!
+			// Een functie heeft ALTIJD een 'exit' (de return value). Het geeft altijd een waarde terug. Standaard is dat 'undefined'.
+			// Dat kan wel eens problemen opleveren. Je wilt dus eigenlijk zelf bepalen wat de functie moet teruggeven!			
+			
+			function berekenDeSom(){
+				return 3*4; // Met return bepaal je wat de functie moet teruggeven nadat het is uitgevoerd.
+			}
+			console.log("bereken de som: " + berekenDeSom());
+	
+			
+			/* 	======================================================================
+				Arguments (parameters)
+			=========================================================================== */
+			function welcome(name){ // name is een 'argument'.
+				console.log("Hallo " + name);	
+			}
+			
+			welcome("Frans"); // Geef de string 'Frans' mee als argument.
+			
+			function telOp(getalA, getalB){ // Deze functie heeft dus TWEE argumenten!
+				var uitkomst = getalA + getalB;
+				return uitkomst;
+			}
+			
+			var eersteGetal = window.prompt("Geef een getal op (>0):");
+			var tweedeGetal = window.prompt("Geef nu ook nog tweede getal op:");
+			
+			/*	Het resultaat van de prompt is een string. We kunnen niet rekenen met 
+				strings, dus gaan we ze omzetten naar een number data type: */
+			
+			eersteGetal = parseInt(eersteGetal);
+			tweedeGetal = parseInt(tweedeGetal);
+			
+			
+			var mijnUitkomst = telOp(eersteGetal,tweedeGetal); // Vul de mijnUitkomst variabele met het resultaat van functie;
+			console.log("Ik heb jouw ingevoerde getallen opgeteld. Het resultaat is: " + mijnUitkomst);
+			console.log(telOp(10,99));
+			
+			
+			
+			/* 	======================================================================
+				Variable scope & Naming collisions
+			=========================================================================== */	
+			/*	De plek waar je een variabele declareert heeft gevolgen voor waar je de 
+				variabele kunt gebruiken.
+				
+				Local variable: function level
+				
+				Global: de variabele wordt onthouden, zolang de webpagina is geladen. 
+				Global variabele kunnen daarom meer geheugen kosten en je programma 
+				uiteindelijk langzaam maken. Gebruik globals alleen indien nodig.
+			*/
+			
+			// Oefening 1:
+			console.log("==========OEFENING 1==============");
+			var geslacht; // global variable
+			geslacht = "jongen";
+			console.log(geslacht);
+			
+			function sekse(){
+				return geslacht; // Return global variable!
+			}
+			console.log(sekse());
+			
+			// Oefening 2:
+			console.log("==========OEFENING 2==============");
+			var geslacht; // global variable
+			geslacht = "meisje";
+			console.log(geslacht);
+			
+			function sekse(){
+				var geslacht = "jongen";
+				return geslacht; // local variable!!
+			}
+			console.log(sekse());
+			
+			
+			
+			/* 	======================================================================
+				Anonymous functions & Function expressions
+			=========================================================================== */
+			/* 	Als je een functie gebruikt op de plek waar je normaal gesproken een 
+				expression zou verwachten, dan wordt het ook als een expression verwerkt. 
+				Dit heet een function expression. 
+
+				Omdat de functie geen naam heeft noemen we het ook wel een anonymous 
+				function of self-excecuting function genoemd. Ze hebben geen naam en 
+				worden direct aangeroepen. Een variabele in een anonymous functie bestaat 
+				alleen zo lang als de functie draait. Je kunt deze functies niet 
+				hergebruiken elders in je code.
+
+				De functie wordt pas uitgevoerd als de interpreter op desbetreffende 
+				regel aangekomen is. Dit betekent dat je de functie niet kan aanroepen 
+				voordat de interpreter er bij is aangekomen.
+
+				Je slaat het resultaat van de functie op in een variabele voor later 
+				gebruik.
+			*/
+			
+			
+		</script>
+	</body>
+</html>

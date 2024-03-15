@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Optellen enzo</title>
+	
+	<!-- link de css -->
+	<link href="css/styles.css" rel="stylesheet" />
+	
+	<!-- link de scripts -->
+	<script src="js/functions.js"></script>
+	
+	
+</head>
+<body>
+
+<h1>Contact Us</h1>
+
+<h1 id="jsUit">U moet Javascript hebben ingeschakeld om deze pagina goed te gebruiken!</h1>
+
+<div id="formholder">
+
+<fieldset>
+	<legend>Laat hier uw info achter</legend>
+	<form action="#" method="post" id="contactForm">
+		
+		<table width="450" border="0">
+			<tr>
+				<td width="100"><label>Naam:</label></td>
+				<td width="350"><input class="veld" type="text" name="naam" id="naam" /><span class="error" id="naam_error">Een naam is verplicht!</span></td>
+			</ tr>
+			<tr>
+				<td><label>Email:</label></td>
+				<td><input class="veld" type="text" name="email" id="email" /><span id="email_error" class="error">Een email is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label>Bedrijf:</label></td>
+				<td><input class="veld" type="text" name="bedrijf" id="bedrijf" /><span id="bedrijf_error" class="error">Een bedrijf is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label>Telefoon:</label></td>
+				<td><input class="veld" type="text" name="tel" id="tel" /><span id="tel_error" class="error">Een telefoonnummer bestaat uit 10 cijfers!</span><span id="tel_error2" class="error">Stop met hacken idioot!!</span></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="submit" value="Verstuur" />
+					<input type="reset" value="Reset" id="reset" />
+				</td>
+			</tr>	
+		</table>
+		
+	</form>
+</fieldset>
+</div>
+
+
+
+</body>
+</html>

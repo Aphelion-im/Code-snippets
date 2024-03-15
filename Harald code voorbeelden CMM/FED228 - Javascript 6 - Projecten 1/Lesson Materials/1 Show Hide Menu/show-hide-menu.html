@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Show / Hide Menu</title>
+</head>
+<body>
+	<h1>CMM Fine Dining</h1>
+	<input type="button" aria-role="button" id="showHideMenu" value="Toon of verberg ons menu">
+	
+	<section id="ourMenu">
+		<h2 title="Try our delicious entrees!">Dinner Entrees</h2> 
+		<nav> 
+			<ul>
+				<li>Thai-style Halibut
+					<ul>
+						<li>coconut milk</li> 
+						<li>pan-fried halibut</li> 
+						<li>early autumn vegetables</li> 
+						<li>Thai spices </li>
+					</ul> 
+				</li>
+				<li>House Grilled Panini
+					<ul>
+						<li>prosciutto</li> 
+						<li>provolone</li> 
+						<li>avocado</li> 
+						<li>sourdough roll</li>
+					</ul>
+				</li>
+				<li>Southwest Slider
+					<ul>
+						<li>whole chiles</li> 
+						<li>hamburger</li> 
+						<li>pepperjack cheese</li> 
+						<li>multigrain roll</li>
+					</ul> 
+				</li>
+			</ul> 
+		</nav>
+	</section>
+	<script>
+        
+        var d = document;
+        
+		window.addEventListener('load', function(){
+			/* 	======================================================================
+					Object sniffing
+			=========================================================================== */
+			if(!d.getElementById("showHideMenu")) return false; 
+            //bestaat showHideMenu? dan werkt de code niet
+			if(!d.getElementById("ourMenu")) return false;
+			//bestaat outMenu? dan werkt de code niet
+            //Deze code is belangrijk
+			
+			
+			/* 	======================================================================
+					Global variables
+			=========================================================================== */
+		      
+            var menuVisable = true;
+            var hetMenu = d.getElementById('ourMenu');
+            var showHideBtn = d.getElementById('showHideMenu');
+		
+		
+		
+			/* 	======================================================================
+					Functions
+			=========================================================================== */
+            
+            function showHideMenu(){
+                //toggle functie
+                if(menuVisable){
+                    //zet uit
+                    hetMenu.style.display = 'none';
+                    menuVisable = false;
+                    showHideBtn.value = 'Toon het menu';
+                }else{
+                    //zet aan
+                    hetMenu.style.display = 'block';
+                    menuVisable = true;
+                    showHideBtn.value = 'Verberg het menu';
+                }
+            }
+		
+		
+			/* 	======================================================================
+					Event Binding & Initialisation
+			=========================================================================== */
+			
+            //vraag
+            showHideMenu();
+            
+            showHideBtn.addEventListener('click', showHideMenu);
+			
+			
+		}); // Einde window load event
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>setInterval</title>
+
+        <script>
+
+          // werkt 1x keer
+          //window.setInterval( "alert('Hallo')", 2000 );
+
+          // Recursieve
+          
+          
+          var teller = 1;
+
+          function showMessage(){
+              
+              // selecteer de ul op de pagina
+              var uitvoer = document.getElementById("aantal");
+              
+              // voeg aan de innerHTML van de ul de li toe met de waarde van de teller
+              uitvoer.innerHTML += "<li>" + teller + "</li>";
+              
+              // verhoog de teller met 1
+              teller++;
+
+           }
+            
+          setInterval(showMessage, 1000);
+         
+        </script>
+
+    </head>
+    <body>
+        
+        <ul id="aantal">
+
+        </ul>
+    </body>
+</html>

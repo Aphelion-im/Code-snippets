@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Swap Image - Result</title>
+</head>
+<body>
+	<a href="../media/audio.mp3" id="play"><img src="../images/play-normal.png"  width="45" height="52" alt="" /></a>
+	<audio id="audioFile">
+		<source src="../media/audio.mp3" type="audio/mpeg">
+	</audio>
+	<script>
+		window.onload = function(){
+			/* 	======================================================================
+				Object sniffing
+			=========================================================================== */
+			if(!document.getElementById("play") || !document.getElementById("audioFile")) return false; // Zij de twee objecten aanwezig? (object sniffing). Zo niet, dan wordt onderstaande code niet uitgevoerd (return false).
+			
+			
+			
+			/* 	======================================================================
+				Global variables
+			=========================================================================== */
+			var playButton = document.getElementById("play");
+			var audioFile = document.getElementById("audioFile");
+			var audioState = false;
+			var imagesFolder = "../images/"; // De directory waarin de images zitten.
+			var imagesList = ["play-normal.png", "play-hover.png", "play-active.png"]; // Te preloaden images.
+			
+			
+			
+			/* 	======================================================================
+				Functions
+			=========================================================================== */
+			function preloadImages(){
+				for(var i=0; i<imagesList.length; i++){ // Ga door de imagesList array heen. En voor elk item in de array...
+					var temp = new Image(); // Image constructor van JavaScript, waarmee we nu dynamisch een img tag in het leven roepen.
+					temp.src = imagesFolder + imagesList[i]; // Geef de nieuwe image een src-attribute. De browser gaat nu direct de image opvragen bij de server!
+				}
+			}
+			
+			function controlMusic(){
+				if(audioState){ // Als de audio aan het afspelen is....
+					// Pauseer het dan.
+					audioState = false;
+					audioFile.pause();
+				} else{ // Als de audio niet aan het afspelen is...
+					// Play dan.
+					audioState = true;
+					audioFile.play();
+				}
+			}
+			
+			function swapImage(welkObject, bestand){
+				welkObject.src = imagesFolder + bestand;
+			}
+			
+			
+			
+			/* 	======================================================================
+				Event Binding & Initialisation
+			=========================================================================== */
+			preloadImages(); // Download afbeeldingen om te preloaden.
+			
+			playButton.addEventListener('click', function(e){
+				e.preventDefault(); // stop de normale werking van de a-tag m.b.t. het event object.
+				controlMusic();
+				swapImage(playButton.firstChild, "play-active.png"); // De ingedrukte variant van de knop tonen.
+			});
+			
+			playButton.addEventListener('mouseover', function(e){ // mouseover de a-tag...
+				if(!audioState){ // audio niet aan spelen? Dan gaan we de image swappen...
+					swapImage(playButton.firstChild, "play-hover.png"); // swapImage de img van de a. De image is de firstChild van de playButton (de a-tag)
+				}
+			});
+			
+			playButton.addEventListener('mouseout', function(e){ // Hetzelfde als mouseover, maar dan omgekeerd.
+				if(!audioState){
+					swapImage(playButton.firstChild, "play-normal.png");
+				}
+			});
+		} // Einde window.onload
+	</script>
+</body>
+</html>

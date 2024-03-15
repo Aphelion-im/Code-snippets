@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+body {
+	background-color: #FFFFFF;	
+	font-family: "Trebucheall my namet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #666;
+}
+
+h1, h2 {
+	font-size: 18px;
+	font-weight: normal;
+}
+
+h1 {
+	color: #CCC;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #CCC;
+	line-height: 40px;
+}
+
+p {
+	margin-top: 20px;
+}
+
+.container {
+	width: 1000px;
+	margin-left: 20px;
+}
+
+.menu, .dynamicContent {
+	margin-top: 25px;
+}
+
+.dynamicContent {
+	clear: both;
+}
+
+.menu a img{
+	margin-right: 20px;
+	border: 1px solid white;
+}
+
+.menu a:hover img{
+	border: 1px solid black;
+}
+
+.dynamicCover {
+	margin-right: 40px;
+}
+
+.dynamicCover, .dynamicText {
+	float: left;
+}
+
+.dynamicText {
+	width: 600px;
+}

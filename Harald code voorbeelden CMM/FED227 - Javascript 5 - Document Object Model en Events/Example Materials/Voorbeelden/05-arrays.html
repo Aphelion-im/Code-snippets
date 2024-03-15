@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Arrays</title>
+    </head>
+    <body>
+        
+        <script>
+
+            // array aanmaken en direct vullen met waardes
+            var dagen = [ "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag" ];
+
+            document.write( "Het is vandaag " + dagen[3] + "<br>");
+            document.write( "De Array heeft " + dagen.length + " elementen:<br><br>");
+
+            for( var i = 0; i <= dagen.length-1; i++ ){
+                document.write( dagen[i] + "<br>");
+            }
+
+            // eerst array creeeren, dan pas vullen
+            var namen = new Array();
+            namen[0] = "Kasper";
+            namen[1] = "Annemiek";
+            namen[2] = "Patrick";
+            namen[3] = "Boris";
+            namen[4] = "Anja";
+            namen[5] = "Pascal";
+
+            alert( namen[3] );
+
+        </script>
+
+    </body>
+</html>

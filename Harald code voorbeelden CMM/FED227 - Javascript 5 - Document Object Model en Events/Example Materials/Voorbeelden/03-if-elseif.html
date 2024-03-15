@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>If Else If Statement</title>
+
+        <script>
+
+			var naam = prompt( "Wat is uw naam?" );
+
+        </script>
+
+    </head>
+    <body>
+        
+        <h1>Met een if else statement kun je meerdere controles uitvoeren</h1>
+
+        <script>
+
+        	if( naam == "" ){
+        		// als de naam leeg is
+        		naam = "Sinterklaas";
+        		document.write( "<h2>Hallo " + naam + "</h2>" );
+
+        	} else if( naam == null ){
+        		// als de naam null is
+        		var naam = prompt( "U moet een naam invullen!" );
+        		document.write( "<h2>Hallo " + naam + "</h2>" );
+
+        	}
+        </script>
+        
+    </body>
+</html>

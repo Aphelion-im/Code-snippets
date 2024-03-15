@@ -1,0 +1,17 @@
+/*Schrijf hier jouw css voor jouw formulier*/
+form {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  margin: 0 auto;
+}
+
+form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='checkbox'] {
+  vertical-align: middle;
+}
+

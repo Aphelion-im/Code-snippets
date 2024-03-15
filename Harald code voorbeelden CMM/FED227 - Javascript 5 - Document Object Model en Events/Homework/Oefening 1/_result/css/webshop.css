@@ -1,0 +1,40 @@
+html{
+	font-size: 16px;
+}
+
+#productContainer{
+	margin: 0 auto;
+}
+
+#productContainer h1, #productContainer h2, #productContainer p{
+	text-align: center;
+	
+	font-family: sans-serif;
+}
+
+#productContainer h1{
+	font-size: 1.7rem;
+}
+
+#productContainer h2{
+	font-size: 1.3rem;
+}
+
+
+#productContainer p{
+	font-size: 0.85rem;
+	line-height: 1.7em;
+}
+
+article{
+	float: left;
+	box-sizing: border-box;
+	width: 31.33%;
+	padding: 1rem;
+	border: 1px solid #CDCDCD;
+	border-radius: 6px;
+	text-decoration: none;
+	text-align:center;
+	margin: 0 1% 1rem 1%;
+	min-height: 440px;
+}

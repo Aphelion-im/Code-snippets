@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-11: Type coercion (revisited)</title>
+	</head>
+	<body>
+		<script>
+			/* 	======================================================================
+				Type coercion (revisited)
+			=========================================================================== */
+			/* 
+				Elke waarde wordt behandeld als true of false. Dit heeft interessante
+				effecten als je twee verschillende data types met elkaar gaat vergelijken.
+			*/	
+			
+			var supermarkt = true;       //het is waar                       true
+            supermarkt = 'spar';         //nog steeds true!                  truthy
+            supermarkt = '';             //False! een lege string is false!
+            
+            
+			
+			/* 	======================================================================
+				Falsy values
+			=========================================================================== */
+			
+			if(false == false){} // TRUE! Is false gelijk aan false? Ja, dat is zo. Dus true.
+		
+		
+		
+			/* 	======================================================================
+				Truthy values
+			=========================================================================== */
+			if(true == true){} // TRUE! Is true gelijk aan true? Ja, dat is zo. Dus true.
+			
+			
+			/* 	======================================================================
+				Equality
+			=========================================================================== */
+			/*
+				Verkom deze chaos door de equality operators te gebruiken. Deze checken
+				namelijk ook of de data types overeenkomen.
+				
+				=== strictly equal to
+				!== not strictly equal to
+			*/
+			
+			
+			
+			/* 	======================================================================
+				Existence
+			=========================================================================== */
+			/* Als je wilt controleren of een object bestaat doe je dat zo: */
+			if(document.getElementById("header")){
+				// De tag met de id genaamd header bestaat!
+			} else {
+				// Niet gevonden: we gaan iets anders doen.
+			}
+			
+			/* Existence controleren moet je NIET zo doen! */
+			if(document.getElementById("header") == true){
+				/* 	DIT WERKT NIET! document.getElementById("header") is een object.
+					Objecten zijn NIET gelijk aan de boolean waarde 'true'! */
+			}
+		</script>
+	</body>
+</html>

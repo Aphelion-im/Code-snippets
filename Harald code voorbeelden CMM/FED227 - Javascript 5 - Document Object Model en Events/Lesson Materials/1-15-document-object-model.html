@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-15: Document Object Model</title>
+		<link href="css/dom-styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>Oefenen met de DOM</h1>
+		<h2 id="kopTekst">Een interactieve <em>subheader</em>.</h2>
+		<input type="button" name="kleurButton" value="Verander achtergrondkleur" onclick="changeBgColor();">
+		<hr>
+		
+		<h1>Images en de DOM</h1>
+		<div id="thumbs">
+			<img src="images/boot-thumb-normal.jpg" alt="Boot">
+			<img src="images/herfst-thumb-normal.jpg" alt="Herfst">
+			<img src="images/weiland-thumb-normal.jpg" alt="Weiland">
+		</div>
+		<hr>
+		
+		<h1>Formulieren en de DOM</h1>
+		<div id="formulieren">
+			<form name="cvFormulier" action="process/login.php" method="post">
+				<fieldset>
+					<legend>Uw persoonsgegevens</legend>
+					<div>
+						<label>Naam: </label>
+						<input type="text" placeholder="Voor- en Achternaam">
+					</div>
+					<div>
+						<label>Geslacht:</label>
+						<input type="radio" name="geslacht" value="man" > Man 
+						<input type="radio" name="geslacht" value="vrouw" > Vrouw
+						<input type="radio" name="geslacht" value="anders" > Anders
+					</div>
+					<div>
+						<label>Voorwaarden:</label>
+						<input type="checkbox" name="voorwaarden" value="voorwwardenGelezen" > Ik heb de voorwaarden gelezen.
+					</div>
+					<div>
+						<label>Insturen:</label>
+						<input type="submit" name="submit" value="Mail ons de gegevens.">
+					</div>
+					<div>
+						<label>Favoriete werk</label>
+						<select>
+							<option value="-1">-- Maak een keuze --</option>
+							<optgroup label="Administratie">
+								<option>Office Manager</option>
+								<option>Office Manager (stage)</option>
+							</optgroup>
+							<optgroup label="Adviseurs">
+								<option>Sales medewerker</option>
+								<option>Marketing</option>
+							</optgroup>
+					
+							<optgroup label="Docenten">
+								<option>Web Design docent</option>
+								<option>Front-End Developer docent</option>
+								<option>Adobe Certified Instructor</option>
+							</optgroup>
+					
+							<optgroup label="Management">
+								<option>CFO</option>
+								<option>COO</option>
+							</optgroup>
+						</select>
+					</div>
+					<div>
+						<label>Insturen:</label>
+						<input type="submit" name="submit" value="Mail CMM">
+					</div>
+				</fieldset>	
+			</form>
+			
+			<form action="process/login.php" method="post">
+				<fieldset>
+					<legend>Inloggen</legend>
+					<div>
+						<label for="username">Username: </label>
+						<input type="text" name="username" placeholder="Voor- en Achternaam">
+					</div>
+					<div>
+						<label>Log-in:</label>
+						<input type="submit" name="submit" id="inlogSubmit" value="Inloggen">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<hr>
+		
+		<div id="nodes">
+			<p>Er zijn element-nodes (HTML-elementen; de tags), text nodes, attribute nodes
+			en comment nodes.</p>
+			
+			<!-- 
+				Commentaar wordt niet getoond op het scherm. Maar de browser maakt een 
+				commentaar tag wel onderdeel van de DOM!
+			
+				Ook white spaces tellen mee (dit zijn text nodes)!
+			 -->
+		</div>
+		<script>
+			/* 	======================================================================
+				Oefenen met de DOM
+			=========================================================================== */
+			
+            hetDocument = window.document;
+            var d = document;
+            
+//            d.bgColor = '#f00'; //achtergrondkleur veranderen.
+            
+            var documentTitle = d.title; //titel van document veranderen.
+			var kopTekst = d.getElementById('kopTekst');
+            
+            kopTekst.style.backgroundColor = 'rgba(0,0,255,0.5)';
+            
+            var kleur = kopTekst.style.backgroundColor;
+            //dit is een value
+            
+            console.log(kleur);
+			
+			/* 	======================================================================
+				Images en de DOM
+			=========================================================================== */
+			
+			var alleImages = d.images; //alle images in een array zetten
+            
+            var hoeveelImages = alleImages.length;
+            
+            console.log(hoeveelImages)
+            
+            for(afbeelding of alleImages){
+                afbeelding.alt += ' is de alt';
+                console.log(afbeelding.src, afbeelding.alt)
+            }
+            
+            //swappen van images
+            
+            var oldSource = alleImages[0].src;
+            alleImages[1].src = oldSource;
+            alleImages[2].src = oldSource;
+            
+            console.log(alleImages);
+			
+			/* 	======================================================================
+				Forms en de DOM
+			=========================================================================== */
+            
+//            alle formulieren zitten in doument.forms
+            var alleForms = d.forms;
+            var aanmeldForm = alleForms[0];
+            
+//            var inlogForm = alleForms[1];     //Dit niet doen, onderstaand is beter. 
+            var inlogForm = d.getElementById('inlogSubmit').forms;
+            
+//            inlogForm.reset() //om te resetten
+//            inlogForm.submit() //om te submitten, niet gebruiken
+//            inlogForm.addEventListener('confirm') //om te confirmen
+//            inlogForm.addEventListener('submit') //om te submitten
+//            d.getElementsByName('cvFormulier')[0] zo kun je op naam zoeken
+            
+            console.log(aanmeldForm.elements[2].value) 
+//            Met elements laat hij alleen de elementen zien, en niet ook nog de divs. 
+//            Tussen de brackets kun je ook names zetten (strings). Met value vraag je dus de value op. 
+//            Je kunt ook booleans opvragen (bijv. checked bij radio buttons.)
+            
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

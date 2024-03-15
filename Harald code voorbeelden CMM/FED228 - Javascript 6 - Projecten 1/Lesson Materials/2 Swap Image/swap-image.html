@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Swap Image</title>
+</head>
+
+<style>
+    #currentT{
+        width: 500px;
+        height: 50px;
+    }
+    </style>
+<body>
+	<a href="media/audio.mp3" id="play"><img src="images/play-normal.png"  width="45" height="52" alt="" /></a>
+	<audio id="audioFile">
+		<source src="media/audio.mp3" type="audio/mpeg">
+
+	</audio>
+	<div id="currentTime">00:00:00</div>
+
+	<script>
+        
+        
+        var d= document;
+		window.addEventListener('load', function(){
+			/* 	======================================================================
+				Object sniffing
+			=========================================================================== */
+			if(!d.getElementById('audioFile') || !d.getElementById('play')) 
+                return false;
+            
+            
+			
+			
+			/* 	======================================================================
+				Global variables
+			=========================================================================== */
+			var playBtn = d.getElementById('play');
+            var audioFile = d.getElementById('audioFile');
+            var audioState = false;
+			var imagePath = 'images/';
+            var currentTime = d.getElementById('currentT');
+            audioFile.controls = true;
+            
+            //preloaden van images
+            var imageList = ['play-normal.png', 'play-hover.png', 'play-active.png'];
+			
+			/* 	======================================================================
+				Functions
+			=========================================================================== */
+			function preLoadImages(){
+                
+                for(afbeelding of imageList){
+                    var temp = new Image();
+                    temp.src = imagePath + afbeelding;
+                    console.log(temp)
+                }
+                
+            }
+			
+			
+            
+            
+            function swapImg(hetObject, bestand){
+                hetObject.src = imagePath + bestand;  
+            }
+            
+            function controlMusic(){
+                if(audioState){
+                    //als hij speelt
+                    audioFile.pause();
+                    audioState = false;
+                    swapImg(playBtn.firstChild, 'play-hover.png');
+                }else{
+                    //als hij niet speelt
+                    audioFile.play();
+                    audioState = true;
+                    swapImg(playBtn.firstChild, 'play-active.png');
+                }
+            };
+            
+            function toonTijd(){
+                if(audioState){
+                var tijd = audioFile.currentTime;
+                var sec = tijd % 60;
+                var min = Math.floor(tijd / 60);
+                if(sec < 10 ) sec = "0" + sec;
+                if(min < 10 ) min = "0" + min;
+                sec = sec.toString().substr(0,5);
+                min = min.toString();
+                tijd = min + ":" + sec;
+                d.getElementById('currentTime').textContent = tijd;
+            }}
+            
+            var timerObject = setInterval(toonTijd,10);
+            
+			/* 	======================================================================
+				Event Binding & Initialisation
+			=========================================================================== */
+			preLoadImages();
+            
+            playBtn.addEventListener('click', function(e){
+                e.preventDefault();
+                controlMusic();
+            });
+            
+            
+            
+            playBtn.addEventListener('mouseover', function(e){
+                if(!audioState){
+                    swapImg(playBtn.firstChild, 'play-hover.png')
+                }
+                
+            });
+            
+            playBtn.addEventListener('mouseout', function(e){
+                if(!audioState){
+                    swapImg(playBtn.firstChild, 'play-normal.png')
+                }
+            });
+            
+            audioFile.addEventListener('ended', function(){
+               controlMusic(); 
+            });
+			
+			
+		}); // Einde window load event
+	</script>
+</body>
+</html>

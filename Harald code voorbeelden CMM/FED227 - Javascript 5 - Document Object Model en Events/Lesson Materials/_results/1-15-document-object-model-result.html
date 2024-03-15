@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-15: Document Object Model</title>
+		<link href="../css/dom-styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>Oefenen met de DOM</h1>
+		<h2 id="kopTekst">Een interactieve <em>subheader</em>.</h1>
+		<input type="button" name="kleurButton" value="Verander achtergrondkleur" onclick="changeBgColor();">
+		<hr>
+		
+		<h1>Images en de DOM</h1>
+		<div id="thumbs">
+			<img src="../images/boot-thumb-normal.jpg" alt="Boot">
+			<img src="../images/herfst-thumb-normal.jpg" alt="Herfst">
+			<img src="../images/weiland-thumb-normal.jpg" alt="Weiland">
+		</div>
+		<hr>
+		
+		<h1>Formulieren en de DOM</h1>
+		<div id="formulieren">
+			<form name="cvFormulier" action="process/login.php" method="post">
+				<fieldset>
+					<legend>Uw persoonsgegevens</legend>
+					<div>
+						<label>Naam: </label>
+						<input type="text" placeholder="Voor- en Achternaam">
+					</div>
+					<div>
+						<label>Geslacht:</label>
+						<input type="radio" name="geslacht" value="man" > Man 
+						<input type="radio" name="geslacht" value="vrouw" > Vrouw
+						<input type="radio" name="geslacht" value="anders" > Anders
+					</div>
+					<div>
+						<label>Voorwaarden:</label>
+						<input type="checkbox" name="voorwaarden" value="voorwwardenGelezen" > Ik heb de voorwaarden gelezen.
+					</div>
+					<div>
+						<label>Insturen:</label>
+						<input type="submit" name="submit" value="Mail ons de gegevens.">
+					</div>
+					<div>
+						<label>Favoriete werk</label>
+						<select>
+							<option value="-1">-- Maak een keuze --</option>
+							<optgroup label="Administratie">
+								<option>Office Manager</option>
+								<option>Office Manager (stage)</option>
+							</optgroup>
+							<optgroup label="Adviseurs">
+								<option>Sales medewerker</option>
+								<option>Marketing</option>
+							</optgroup>
+					
+							<optgroup label="Docenten">
+								<option>Web Design docent</option>
+								<option>Front-End Developer docent</option>
+								<option>Adobe Certified Instructor</option>
+							</optgroup>
+					
+							<optgroup label="Management">
+								<option>CFO</option>
+								<option>COO</option>
+							</optgroup>
+						</select>
+					</div>
+					<div>
+						<label>Insturen:</label>
+						<input type="submit" name="submit" value="Mail CMM">
+					</div>
+				</fieldset>	
+			</form>
+			
+			<form action="process/login.php" method="post">
+				<fieldset>
+					<legend>Inloggen</legend>
+					<div>
+						<label for="username">Username: </label>
+						<input type="text" name="username" placeholder="Voor- en Achternaam">
+					</div>
+					<div>
+						<label>Log-in:</label>
+						<input type="submit" name="submit" value="Inloggen">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<hr>
+		
+		<div id="nodes">
+			<p>Er zijn element-nodes (HTML-elementen; de tags), text nodes, attribute nodes
+			en comment nodes.</p>
+			
+			<!-- 
+				Commentaar wordt niet getoond op het scherm. Maar de browser maakt een 
+				commentaar tag wel onderdeel van de DOM!
+			
+				Ook white spaces tellen mee (dit zijn text nodes)!
+			 -->
+		</div>
+		<script>
+			/* 	======================================================================
+				Oefenen met de DOM
+			=========================================================================== */
+			document.bgColor = "#F00"; // Achtergrondkleur veranderen van de body-tag. Let op: We veranderende sterk verouderde bgcolor attribute. Gebruik liever css via het style object: document.body.style.backgroundColor
+			var documentTitle = document.title; // Document title opvragen
+		
+			var kopTekst = document.getElementById("kopTekst");
+			kopTekst.style.backgroundColor = "#00F";
+			
+			
+			
+			/* 	======================================================================
+				Images en de DOM
+			=========================================================================== */
+			var alleImages = document.images; // Een array met alle afbeeldingen.
+			alleImages.length; // Het aantal afbeeldingen in het document.
+			
+			for(i=0; i<alleImages.length; i++){
+				var imgSrc = alleImages[i].src;
+				var imgAlt = alleImages[i].alt;
+				var imgWidth = alleImages[i].width;
+				var imgHeight = alleImages[i].height;
+				console.log(imgWidth);
+			}
+			
+			
+			
+			/* 	======================================================================
+				Forms en de DOM
+			=========================================================================== */
+			var alleForms = document.forms; // Een array met alle formulieren.
+			var loginForm = document.forms[1]; // Het tweede formulier.
+			
+			function changeBgColor(){
+				var userColor = window.prompt("Voer een hexadecimale kleur in: ");
+			
+				if(userColor == null){ // User klikte op cancel, default color tonen.
+					kopTekst.style.backgroundColor = "#0F0";
+				} else if(userColor == ""){
+					alert("U heeft niets ingevoerd! Probeer het opnieuw.");
+					changeBgColor();
+					return; // De reset van de functie mag niet worden uitgevoerd. In onze geval gaan we de border dus NIET aanpassen.
+				} else{
+					kopTekst.style.backgroundColor = userColor;
+				}
+				kopTekst.style.border = "2px solid black";
+			}
+		</script>
+	</body>
+</html>

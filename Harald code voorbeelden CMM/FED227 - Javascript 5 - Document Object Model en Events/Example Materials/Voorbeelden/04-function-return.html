@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bereken BTW</title>
+    </head>
+    <body>
+        
+        <script>
+
+        	var prijs = prompt("Wat is de prijs?");
+        	var aantal = prompt("Wat is het aantal?");
+
+        	function totaalPrijs( prijs, aantal){
+
+        		var totaal = parseFloat(prijs) * parseInt(aantal);
+        		return totaal; 
+
+        	}
+
+			function btw( bedrag ){
+				bedrag = Math.round(bedrag, 2 );
+				var btw = bedrag * 0.21;
+				var totaal = bedrag + btw;
+				return totaal;
+			}
+
+			// aanroep van de functie met script
+			var totaalprijs = totaalPrijs( prijs, aantal );
+			var totaalBTW = btw( totaalprijs );
+
+
+			document.write( "Totaal exclusief BTW: " + totaalprijs + "<br>" );
+			document.write( "Totaal inclusief BTW: " + totaalBTW );
+
+
+        </script>
+    </body>
+</html>

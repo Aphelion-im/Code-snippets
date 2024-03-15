@@ -1,0 +1,44 @@
+*{
+	font-family: sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	font-size: 16px;
+}
+
+h2, h1{
+	margin-bottom: 1rem;
+}
+
+section{
+	border: 1px solid black;
+	width: 700px;
+	margin: 0 auto;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	background-color: #efefef;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+figure img{
+	max-width: 500px;
+	height: auto;
+}
+
+figure figcaption{
+	font-size: 0.8rem;
+	margin-bottom: 2rem;
+}
+
+#galleryPagination li{
+	list-style-type: none;
+	display: inline;
+}
+
+#galleryPagination img{
+	max-width: 200px;
+	height: auto;
+}

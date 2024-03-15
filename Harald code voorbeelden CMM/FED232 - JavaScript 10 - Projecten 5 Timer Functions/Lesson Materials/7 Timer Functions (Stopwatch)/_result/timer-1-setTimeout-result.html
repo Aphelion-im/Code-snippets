@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>setTimeout</title>
+    </head>
+    <body>
+        <ul id="aantal"></ul>
+        
+        <script>
+			window.onload = (function(){
+				/* 
+					De JavaScript method window.setTimeout(function, milliseconds)
+					voert een functie uit na een aantal milliseconde.
+					
+					Voorbeeld: 
+				*/
+				window.setTimeout("alert('Zeg na twee seconden \"Hallo\".')", 2000);
+	
+	
+				
+				/* 	======================================================================	
+				Browser & Object sniffing
+				=========================================================================== */
+				if(!document.getElementById) return false;
+				if(!document.getElementById("aantal")) return false;
+				
+				
+				
+				/* 	======================================================================	
+				Variables
+				=========================================================================== */
+				var teller = 1;
+				var uitvoer = document.getElementById("aantal");
+				
+			
+			
+				/* 	======================================================================	
+				Functions
+				=========================================================================== */
+				// Voeg elke seconde een nieuwe li toe aan de ul, met daarin de waarde van de teller:
+				
+				function showMessage(){            
+					  	uitvoer.innerHTML += "<li>" + teller + "</li>"; // voeg aan de innerHTML van de ul een li toe met daarin de waarde van de teller.
+			  			teller++; // verhoog de teller met 1
+			  			setTimeout(showMessage, 1000);  // roep showMessage na één seconde opnieuw aan
+				}
+			
+				setTimeout(showMessage, 1000); // Initialise
+			}());
+        </script>
+    </body>
+</html>

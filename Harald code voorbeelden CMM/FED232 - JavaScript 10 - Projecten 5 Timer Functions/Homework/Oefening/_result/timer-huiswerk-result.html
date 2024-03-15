@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Timer Huiswerk (result)</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		
+		
+		#container{
+			position: relative;
+			background-color: black;
+			margin: 0 auto;
+			width: 1000px;
+			height: 500px;
+		}
+		
+		#blokje{
+			position: absolute;
+			left: 0px;
+			top: 50%;
+			margin: -12.5px 0 0 0;
+			background-color: white;
+			width: 25px;
+			height: 25px;
+		}
+		
+		#moveButton{
+			margin: 1rem auto;
+			display: block;
+			width: 100px;
+			height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="blokje"></div>
+	</div>
+	<button id="moveButton">Move!</button>
+	<script>
+		window.onload = function(){
+			/* 	======================================================================	
+				Object sniffing
+			=========================================================================== */	
+			if(!document.getElementById("container") || !document.getElementById("blokje") || !document.getElementById("moveButton")) return false;
+			
+			
+			
+			/* 	======================================================================	
+				Variables
+			=========================================================================== */	
+			var container = document.getElementById("container");
+			var blokje = document.getElementById("blokje");
+			var moveButton = document.getElementById("moveButton");
+			var currentLeft = 0;
+			var kleur = [0,0,0]; // Een array met drie items. Elk item staat symbool voor een kleurencomponent (rood, groen of blauw) voor gebruik in  rgb(0,0,0);
+			var timer; // Een variable voor setInterval(), zodat we de animatie met clearInterval(timer) kunnen stoppen.
+			
+			
+			
+			/* 	======================================================================	
+				Functions
+			=========================================================================== */	
+			function startMove(){ // Initaliseren van blokje en de animatie.
+				blokje.style.left = "0px";
+				blokje.style.backgroundColor = changeColor(); // Kleur op zwart zetten, want kleur[0,0,0].
+				timer = setInterval(moveBlokje, 1); // Elke milliseconde de function moveBlokje uitvoeren. Dit resultaat opslaan in de timer var, zodat we de animatie ook weer kunnen stoppen.
+			}
+			
+			function loopMove(){ // Function om de animatie opnieuw te kunnen starten.
+				currentLeft = 0;
+				kleur = [0,0,0];
+			}
+			
+			function stopMove(){ // Function om de animatie te kunnen stoppen (bijvoorbeeld door een click event te binden aan een extra button-tag).
+				clearInterval(timer);
+			}
+			
+			function moveBlokje(){
+				parseInt(blokje.style.left) < 975 ? currentLeft++ : loopMove(); // Is de style.left (omgezet van string naar number) van blokje < 975? Indien true: verhoog currentLeft met 1. False: dan zijn we aan het eind: loopMove() uitvoeren.
+				blokje.style.left = currentLeft + "px"; // currentLeft gebruikt om style.left te kunnen updaten.
+				blokje.style.backgroundColor = changeColor(); // Vul de style.backgroundColor met het resultaat van changeColor().
+				
+				// Debuginformatie tonen in de console log.
+				console.log(kleur, " LEFT: " + currentLeft + "px");
+			}
+			
+			function changeColor(){ // Function om blokje van kleur te kunnen veranderen op basis van drie kleurcomponenten die we uit style.backGroundColor halen.
+				/* 
+					Gebruikt rgb() zoals rgb(0,0,0) of rgb(50,120,200) of rgb(255,4,34)
+					
+					Het rode kleurcomponent ligt tussen '(' en de eerste ','.
+					Het groene kleurcomponent ligt tussen de eerste ',' en de laatste ','.
+					Het blauwe kleurcomponent ligt tussen de laatste ',' en de ')'.
+					
+					Kleurcomponenten zijn altijd getallen tussen 0 en 255.
+				*/
+				var positieEersteHaak = blokje.style.backgroundColor.indexOf("(")+1;
+				var positieLaatsteHaak = blokje.style.backgroundColor.indexOf(")")+1;
+				var positieEersteKomma = blokje.style.backgroundColor.indexOf(",")+1;
+				var positieLaatsteKomma = blokje.style.backgroundColor.lastIndexOf(",")+1;
+				
+				var redComponent = parseInt(blokje.style.backgroundColor.substr(positieEersteHaak, 3));
+				var greenComponent = parseInt(blokje.style.backgroundColor.substr(positieEersteKomma, 3));
+				var blueComponent = parseInt(blokje.style.backgroundColor.substr(positieLaatsteKomma));
+				
+				if(kleur[0] < 255){
+					kleur[0]++;
+				} else if(kleur[1] < 255){
+					kleur[1]++;
+				} else if(kleur[2] < 255){
+					kleur[2]++;
+				}
+				
+				/*
+					Probeer ook eens:
+				
+					if(kleur[0] < 255){
+						kleur[0]++;
+					} else {
+						kleur[0] = 0;
+					}
+				
+					if(kleur[1] < 255){
+						kleur[1]++;
+					} else{
+						kleur[1] = 0;
+					}
+				
+					if(kleur[2] < 255){
+						kleur[2]++;
+					} else {
+						kleur[2] = 0;
+					}
+					
+					Schrijf nu eens de code die een compleet willekeurige kleur maakt met Math.random()!
+				
+				*/
+				
+				return "rgb("+ kleur[0] + ","+ kleur[1]+","+kleur[2] + ")";
+			}
+			
+			
+			
+			/* 	======================================================================	
+				Event Binding
+			=========================================================================== */	
+			moveButton.addEventListener("click", function(){
+				startMove();
+			});
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

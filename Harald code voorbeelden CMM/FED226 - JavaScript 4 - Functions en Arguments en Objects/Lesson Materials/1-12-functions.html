@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-14: Functions</title>
+	</head>
+	<body>
+		<script>
+			/* 	======================================================================
+				Functions
+			=========================================================================== */
+			/* 	Een functie is een op zichzelf staand script dat kan worden hergebruikt.
+				Functies maken je code overzichtelijker en modulair. 
+				Goede functies kun je ook in andere projecten weer overnemen en ze daar gebruiken!
+				
+				Een functie kan ergens anders in je script (meerdere keren) worden aangeroepen. Het aanroepen van een functie noemen we een function call.
+				Als een functie wordt aangeroepen wordt de code tussen de curly braces {} uitgevoerd.
+				Daarna geeft de functie ALTIJD een waarde terug. Dit noemen we de return value van de function.
+			*/
+			
+            function begroet(){
+//                alert('hello world!');
+                return('oi!')
+            }
+            
+            var antwoord = begroet();
+            console.log(antwoord)
+            
+            
+            
+            /**
+            *een functie die een som uitrekent 
+            *@return number  uitkomst van de som
+            */
+            function bereken (){
+                return 3 + 4;
+            }
+            
+            var antwoord = bereken();
+            
+            console.log(antwoord)
+            
+            
+            
+			/* 	======================================================================
+				Arguments (parameters)
+			=========================================================================== */
+			
+			function doeIets(arg1, arg2, arg3){
+                
+            }
+            
+            /**
+             * 
+             * @param number lengte 
+             * @param number breedte 
+             * @param number hoogte 
+             * @return bool | number 
+             */
+            function berekenInhoud(lengte, breedte, hoogte){  
+                lengte = parseFloat(lengte);
+                breedte = parseFloat(breedte);
+                hoogte = parseFloat(hoogte);
+                
+                var fout = 'Oeps:'
+                if(isNaN(lengte))fout += '\nLengte is geen geldig getal'
+                if(isNaN(breedte))fout += '\nBreedte is geen geldig getal'
+                if(isNaN(hoogte))fout += '\nHoogte is geen geldig getal'
+                var uitkomst = lengte * breedte * hoogte;
+                if(isNaN(uitkomst)){
+                    alert(fout)
+                    return false;
+                }
+                
+                return uitkomst;
+            }
+            
+            var antwoord = berekenInhoud(3,4,5);
+            console.log(antwoord);
+			
+			/* 	======================================================================
+				Variable scope & Naming collisions
+			=========================================================================== */
+			/*	De plek waar je een variabele declareert heeft gevolgen voor waar je de 
+				variabele kunt gebruiken.
+				
+				Local variable: function level
+				
+				Global: de variabele wordt onthouden, zolang de webpagina is geladen. 
+				Global variabele kunnen daarom meer geheugen kosten en je programma 
+				uiteindelijk langzaam maken. Gebruik globals alleen indien nodig.
+			*/
+			
+			
+			/* 	======================================================================
+				Anonymous functions & Function expressions
+			=========================================================================== */
+			/* 	Als je een functie gebruikt op de plek waar je normaal gesproken een 
+				expression zou verwachten, dan wordt het ook als een expression verwerkt. 
+				Dit heet een function expression. 
+
+				Omdat de functie geen naam heeft noemen we het ook wel een anonymous 
+				function of self-excecuting function genoemd. Ze hebben geen naam en 
+				worden direct aangeroepen. Een variabele in een anonymous functie bestaat 
+				alleen zo lang als de functie draait. Je kunt deze functies niet 
+				hergebruiken elders in je code.
+
+				De functie wordt pas uitgevoerd als de interpreter op desbetreffende 
+				regel aangekomen is. Dit betekent dat je de functie niet kan aanroepen 
+				voordat de interpreter er bij is aangekomen.
+
+				Je slaat het resultaat van de functie op in een variabele voor later 
+				gebruik.
+			*/	
+			
+		
+		</script>
+	</body>
+</html>

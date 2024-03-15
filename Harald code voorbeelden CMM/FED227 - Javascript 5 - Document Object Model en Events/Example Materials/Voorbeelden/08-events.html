@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Events</title>
+
+        <style>
+
+            .groter { font-size : 20px; }
+            .kleiner { font-size : 8px; }
+            .kleurtje { color : blue; }
+
+        </style>  
+
+        <script>
+
+            // events functions
+            function verwijder(veld){
+
+
+
+                if( veld.value == veld.defaultValue ){
+                   veld.value = "";
+                }
+
+            }  
+
+            function zetTerug(veld){
+
+                //alert("hallo");
+
+                if( veld.value == "" ){
+                    veld.value = veld.defaultValue;
+                }
+            }    
+
+        function changeColor( elmt ){
+
+            elmt.style.color = "#3DE";
+
+        }
+
+        </script>
+
+    </head>
+    <body onload="alert('Geladen');">
+        
+        <!-- inline events -->
+        <h1 id="hoofd" onmouseover="this.style.color='#FF0';" onmouseout="this.style.color='#000';" onclick="changeColor(this);">Dit is een titel</h1>
+
+        <!-- eventhandlers die een functie aanroepen -->
+        <form name="test">
+            Naam: <input type="text" name="naam" value="Vul hier uw naam in" onfocus="verwijder(this);" onblur="zetTerug(this);">
+            <br>
+            Adres: <input type="text" name="adres" value="Daltonlaan 700" onfocus="verwijder(this);" onblur="zetTerug(this);">
+        </form>
+
+        <!-- inline event -->
+        <a href="#" onclick="window.open();" id="linkje">Klikmij</a>
+
+        <br>
+
+        <div onmouseover="this.className='groter'" onmouseout="this.className='kleiner'" onclick="this.className+=' kleurtje'">
+
+            Hou je muis hieroverheen om de class attribuut te veranderen
+
+        </div>
+
+       
+
+    </body>
+</html>

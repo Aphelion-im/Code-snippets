@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formvalidatie</title>
+	
+	<link href="css/styles.css" rel="stylesheet" />
+	
+</head>
+<body>
+
+<h1>Contact Us</h1>
+
+<div class="yesJS">This Page Requires Javascript</div>
+
+<div id="formholder" class="noJS">
+<fieldset>
+	<legend>Laat hier uw info achter</legend>
+	<form action="#" method="post">
+		
+		<table width="450" border="0">
+			<tr>
+				<td width="100"><label for="naam">Naam:</label></td>
+				<td width="350"><input class="veld" type="text" name="naam" id="naam" value="testValue" /><span class="error" id="naam_error">Een naam is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label for="liame">Email:</label></td>
+				<td><input class="veld" type="hidden" name="email" id="email" />
+                    <input class="veld" type="text" name="liame" id="liame" /><span id="liame_error" class="error">Een email is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label for="bedrijf">Bedrijf:</label></td>
+				<td><input class="veld" type="text" name="bedrijf" id="bedrijf" /><span id="bedrijf_error" class="error">Een bedrijf is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label for="postcode">Postcode:</label></td>
+				<td><input class="veld" type="text" name="postcode" id="postcode" /><span id="postcode_error" class="error">Een postcode is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td><label for="tel">Telefoon:</label></td>
+				<td><input class="veld" type="telephone" name="tel" id="tel" /><span id="tel_error" class="error">Een telefoon is verplicht!</span></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="button" value="Verstuur" name="verstuur" id="verstuur" />
+					<input type="button" value="Reset" name="reset" id="reset" />
+				</td>
+			</tr>	
+		</table>
+		
+	</form>
+</fieldset>
+</div>
+
+<script src="js/mainscript.js"></script>
+
+</body>
+</html>

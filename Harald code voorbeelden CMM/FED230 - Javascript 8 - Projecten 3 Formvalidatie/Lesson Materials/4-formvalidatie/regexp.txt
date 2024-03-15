@@ -1,0 +1,25 @@
+Reg Exp
+
+
+Site: http://www.regular-expressions.info
+
+Email:
+
+/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,99}$/
+
+Telefoon:
+
+/^ [0-9()-]{1,10}$/
+
+Credit Cards( alleen checken of het nummer klopt, niet welk merk ):
+
+/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+
+Data ( dd-mm-yyyy ):
+
+/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/
+
+
+
+/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i;
+https://regexper.com/#%2F%5E%5B1-9%5D%5B0-9%5D%7B3%7D%20%3F%28%3F!sa%7Csd%7Css%29%5Ba-z%5D%7B2%7D%24%2Fi

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mark up on the fly!</title>
+</head>
+<body>
+	<p>JavaScript gebruiken om HTML-objecten dynamisch toe te voegen aan het document.</p>
+	<script>
+		window.onload = function(){
+			/* 	======================================================================	
+				document.write (gebruiken we nooit omdat we niet het HELE document willen herschrijven!)
+			=========================================================================== */
+			document.write('<h1 id="heading">Hallo!</h1>'); // Het hele document vervangen met nieuwe content (een h1-tag).
+			var test = document.getElementById("heading"); // Verwijzen naar de dynamisch aangemaakte h1-tag
+			test.className = "headingClass"; // De heading een className geven. test.setAttribute("class", "headingClass"); werkt natuurlijk ook.
+			test.style.color = "red"; // De heading rood maken.
+			
+			
+			
+			/* 	======================================================================	
+				DOM Manipulatie (veilig voor user input, moeilijk te schrijven!)
+			=========================================================================== */
+			/* Maak met DOM manipulatie de volgende HTML-code:
+				<p>Dit is <em>mijn</em> content.</p>
+			*/
+			
+			var paragraph = document.createElement("p"); // Maak een lege p-tag aan (element node)
+			var textPart1 = document.createTextNode("Dit is "); // Maak een tekst node aan.
+			paragraph.appendChild(textPart1); // Stop de text node in de p-tag.
+		
+			var emphasis = document.createElement("em"); // Maak een em-tag aan.
+			var textPart2 = document.createTextNode("mijn");
+			emphasis.appendChild(textPart2); // De tekst 'mijn' in de em-tag zetten.
+			paragraph.appendChild(emphasis); // Daarna zetten we de em in de paragraph.
+		
+			var textPart3 = document.createTextNode(" content.");
+			paragraph.appendChild(textPart3);
+		
+			document.body.appendChild(paragraph); // De paragraaf met tekst in de body stoppen.
+			
+			
+			
+			/* 	======================================================================	
+				innerHTML (is sneller dan dom manipulatie, maar onveilig met user input!)
+			=========================================================================== */
+			var testPar = document.createElement("p"); // Maak een lege paragraph aan.
+			document.body.appendChild(testPar); // De lege paragraph in de body stoppen.
+			
+			testPar.innerHTML = "Deze tags zijn gemaakt met <em>innerHTML</em>."; // De paragraph vullen met nieuwe content. innerHTML is een veel snellere methode om iets toe te voegen aan de DOM, maar onveilig als de gegevens van de user komen. HTML-code toevoegen werkt ook!	
+			testPar.getElementsByTagName("em")[0].style.color = "pink"; // De em-tag roze maken.
+		
+		
+			/* 	======================================================================	
+				textContent
+			=========================================================================== */
+			var testPar = document.createElement("p");
+			document.body.appendChild(testPar);
+			
+			testPar.textContent  = "Dit is tekst toegevoegd met de <em>textContent</em> property."; // Er wordt geen em-tag aangemaakt want het is gewone tekst die je toevoegt!
+		} // Einde window.onload
+	</script>
+</body>
+</html>

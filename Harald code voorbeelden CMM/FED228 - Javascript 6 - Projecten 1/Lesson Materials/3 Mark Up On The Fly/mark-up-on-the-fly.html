@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mark up on the fly!</title>
+</head>
+<body>
+	<p>JavaScript gebruiken om HTML-objecten dynamisch toe te voegen aan het document.</p>
+	<script>
+        var d = document;
+		window.addEventListener('load', function(){
+			/* 	======================================================================	
+				document.write (gebruiken we nooit omdat we niet het HELE document willen herschrijven!)
+			=========================================================================== */
+			d.write('<h1 id="heading">Hallo</h1>');
+            d.write('<h2 id="heading2">Hoi</h2>');
+            d.wr
+            
+            var test = d.getElementById('heading');
+            test.className = 'headingClass';
+            test.style.color = 'blue';
+			
+			
+			/* 	======================================================================	
+				DOM Manipulatie (veilig voor user input, moeilijk te schrijven!)
+			=========================================================================== */
+			/* Maak met DOM manipulatie de volgende HTML-code:
+				<p>Dit is <em>mijn</em> content.</p>
+			*/
+            var paragraaf = d.createElement('p');           //<p></p>
+            var textPart1 = d.createTextNode('Dit is ');    //Dit is 
+            paragraaf.appendChild(textPart1);               //<p>Dit is </p>
+            
+            var emphsis = d.createElement('em');            //<em></em>
+            var textPart2 = d.createTextNode('mijn');       //mijn
+            emphsis.appendChild(textPart2);                 //<em>mijn</em>
+            
+            paragraaf.appendChild(emphsis);                 //<p>Dit is </p> <em>mijn</em>
+            
+            var textPart3 = d.createTextNode(' content!'); //content
+            
+            paragraaf.appendChild(textPart3);              //<p>Dit is <em>mijn</em> content</p>
+            
+            d.body.appendChild(paragraaf);
+            
+            textPart2.textContent = 'onze';
+
+						
+			
+			/* 	======================================================================	
+				innerHTML (is sneller dan dom manipulatie, maar onveilig met user input!)
+			=========================================================================== */
+			var testParagraaf = d.createElement('p');
+            d.body.appendChild(testParagraaf);
+            
+            testParagraaf.innerHTML = 'Dit is een lange en toch weer <em>korte</em>, oh nu niet meer kort maar toch lange text';
+            
+            testParagraaf.getElementsByTagName('em')[0].style.color = 'red';
+		
+		  
+			/* 	======================================================================	
+				textContent
+			=========================================================================== */
+			var testParagraaf2 = d.createElement('p');
+            d.body.appendChild(testParagraaf2);
+            
+            testParagraaf2.textContent = 'Dit is een lange en toch weer <em>niet zo lange</em>, oh nu niet meer kort maar toch lange text';
+			//werkt niet want het is geen em Node.
+			
+		});// Einde window.onload
+	</script>
+</body>
+</html>

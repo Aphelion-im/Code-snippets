@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>setInterval</title>
+    </head>
+    <body>
+        <ul id="aantal"></ul>
+        
+         <script>
+			window.onload = (function(){
+				/* 
+					De JavaScript method window.setInterval(function, milliseconds) is 
+					hetzelfde als window.setTimeout(), maar het herhaalt het uitvoeren 
+					van een functie continu.
+				*/
+	
+	
+				
+				/* 	======================================================================	
+				Browser & Object sniffing
+				=========================================================================== */
+				if(!document.getElementById("aantal")) return false;
+				
+				
+				
+				/* 	======================================================================	
+				Variables
+				=========================================================================== */
+				var teller = 1;
+				var uitvoer = document.getElementById("aantal");
+				
+			
+			
+				/* 	======================================================================	
+				Functions
+				=========================================================================== */
+				function showMessage(){
+              		uitvoer.innerHTML += "<li>" + teller + "</li>";
+			  		teller++;
+                    if(teller > 15){
+                        clearInterval(whatTheF);
+                        uitvoer.innerHTML += "<li>Teller is gestopt</li>";
+                    }
+				}
+				
+                var whatTheF = setInterval(showMessage,100);
+				
+			}());       
+        </script>
+    </body>
+</html>

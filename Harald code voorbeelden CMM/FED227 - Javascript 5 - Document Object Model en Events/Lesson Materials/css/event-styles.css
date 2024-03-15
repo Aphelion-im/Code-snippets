@@ -1,0 +1,39 @@
+html{ font-size: 16px; }
+body{ margin: 0; padding: 1rem;}
+button{ 
+	width: 200px;
+	border-radius: 4px;
+	color: #666;
+	border: 1px solid #666;
+	padding: 1rem;
+	background-color: #eee;
+	cursor: pointer;
+}
+
+button:hover{
+	background-color: #fefefe;
+	color: #888;
+	border: 1px solid #888;
+}
+
+.ball{ 
+	width: 50px; 
+	height: 50px; 
+	position: relative; 
+	border-radius: 50%; 
+	border: 1px solid black; 
+	margin-bottom: 1rem;
+	color: white;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 0.8rem;
+	font-family: sans-serif;
+}
+
+#ballBlue{ background-color: blue; }
+#ballGreen{ background-color: green; }
+#ballRed{ background-color: red; }
+#ballYellow{ background-color: yellow; }
+#ballMagenta{ background-color: magenta; }
+
+#balls{ padding: 1rem; }

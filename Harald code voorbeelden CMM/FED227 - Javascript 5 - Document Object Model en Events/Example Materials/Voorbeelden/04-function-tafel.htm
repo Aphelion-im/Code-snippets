@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Leer de tafel van....</title>
+	
+	<style type="text/css">
+	
+		#rekentafel {
+			
+			width : 200px;
+			background-color : #AAA;
+			margin-left : auto;
+			margin-right : auto;
+			text-align : center;
+			padding : 15px;
+			
+		}
+		
+		div {
+			
+			padding : 6px;
+			
+		}
+		
+		.stripe {
+		
+			background-color : #CCC;
+		
+		}
+
+		.stripe2 {
+		
+			background-color : #F00;
+		
+		}
+	
+	</style>
+	
+	
+	<script type="text/javascript">
+	
+	function maakTafel(){	
+		
+		// vraag klant om getal..."5"
+		var tafel = prompt( "Welke tafel wilt u hebben?" );
+		
+		//haal het getal uit de string...5
+		tafel = parseInt( tafel );
+		
+		// valideer de invoer...is het wel een nummer??
+		while( isNaN( tafel ) || tafel == "" || tafel == null ){
+			tafel = prompt( "Dit is geen cijfer!\nWelke tafel wilt u hebben?" );
+		}
+		
+		// maak de var aan die het resultaat gaat vasthouden...
+		var uitkomst = "<div id=\"rekentafel\">";
+		
+		// start de tafel loop...
+		for( var i = 1; i <= 10; i++ ){
+			//console.log(i);
+			
+			// bepaal of de openingsdiv een even of oneven div is...
+			var openDiv = ( i % 2 ) == 0? "<div class=\"stripe\">" : "<div class=\"stripe2\">";
+
+			// zet het resultaat in de var uitkomst...
+			uitkomst += openDiv + i + " X " + tafel + " = " + "<b>" + ( tafel * i ) + "</b>" + "</div>";
+		
+		}
+		
+		// sluit de rekentafel div en zet dat ook in uitkomst mbv +=...
+		uitkomst += "</div>";
+		
+		// vervang de inhoud van de div tafelUitvoer voor de uitkomst...
+		document.getElementById("tafelUitvoer").innerHTML = uitkomst;
+	
+	}
+	
+	// als het document geladen is start dan de functie...
+	//window.onload = maakTafel;
+	
+
+	</script>
+	
+	
+</head>
+<body>
+	
+	<h1><a href="#" onclick="maakTafel();">Leer de tafel van...</a></h1>
+	<div id="tafelUitvoer">
+	
+		<p>Kies uw tafel!</p>
+	
+	</div>
+
+</body>
+</html>

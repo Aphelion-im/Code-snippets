@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Window Object</title>
+    </head>
+    <body>
+        
+        <script>
+
+            window.open(
+                "http://cmm.nl", 
+                "_blank", 
+                "width=400, height=500, top=100, left=100, resizable=no"
+                );
+
+            document.write( window.location + "<br>");
+            document.write( window.screen.width );
+
+            function gaTerug(){
+
+                window.history.back();
+
+            }
+
+
+        </script>
+
+<br>
+
+        <a href="#" onclick="gaTerug();">Klik om terug te gaan</a>
+
+    </body>
+</html>

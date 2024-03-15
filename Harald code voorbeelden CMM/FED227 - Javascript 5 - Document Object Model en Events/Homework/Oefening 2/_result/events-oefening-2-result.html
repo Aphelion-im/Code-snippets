@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Opdracht 3: Events oefening 2</title>
+        <style>
+           div {
+                width : 100px;
+                height: 100px;
+                float : left;
+                margin-right : 10px;
+                margin-bottom : 10px;
+                cursor : pointer;
+           }
+
+        </style>  
+    </head>
+    <body>
+        <h1 id="titel">Wat een hoop divs</h1>
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      
+        <script>
+			// Schrijf een onload event voor window, zodat jouw JavaScript-code pas wordt uitgevoerd als de browser klaar is met het opbouwen van de DOM.
+			window.onload = function(){	 	
+				/* 	======================================================================	
+					Initialise
+				=========================================================================== */
+				// Maak een variabele aan 'deDivs' (array). Assign het met alle div-tags van het document.
+				var deDivs = document.getElementsByTagName("div");
+			
+				// Schrijf een for-loop zodat elke div in het document een rode achtergrond kleur krijgt. 
+				for(var i=0; i< deDivs.length; i++){
+					deDivs[i].style.backgroundColor = "red";
+				}
+
+				/* 	======================================================================	
+					Functions
+				=========================================================================== */
+				// Maak een functie 'changeColor'. De functie heeft één parameter genaamd 'geklikteDiv'. 
+				function changeColor(geklikteDiv){			
+					// Schrijf de code voor de functie 'changeColor'. De bedoeling is de achtergrondkleur van 'geklikteDiv' rood te maken als het blauw is, en blauw als het rood is.
+					if(geklikteDiv.style.backgroundColor == "red"){
+						geklikteDiv.style.backgroundColor = "blue"; // Maak de geklikteDiv blauw.
+					} else {
+						geklikteDiv.style.backgroundColor = "red"; // Maak de geklikteDiv blauw.
+					}
+				}
+			
+			
+				/* 	======================================================================	
+					Events
+				=========================================================================== */
+				// Schrijf een for-loop zodat elke div in het document een click-event bind krijgt middels de .addEventListener() method.
+				for(var i=0; i<deDivs.length; i++){
+					deDivs[i].addEventListener('click', function(eventObject){
+						// Gebruik het eventObject dat javaScript automatisch aanmaakt bij addEventListener() om er achter te komen op welk object er geklikt is.
+						geklikteDiv = eventObject.target;
+						// Als het click event plaats vindt moet de functie changeColor aangeroepen worden. Vergeet niet de functie één parameter mee te geven: de zojuist aangeklikte div.
+						changeColor(geklikteDiv);
+					}, false);
+				}
+				
+				/* Extra: maak de .addEventListener compatible met IE-browsers, volgens de voorbeelden uit je boek.
+				for(var i=0; i<deDivs.length; i++){
+					deDivs[i].addEventListener('click', function(eventObject){
+						// Oude IE's snappen het eventObject niet! Maak een workaround.
+						if(eventObject == null){
+							var eventObject = window.event; // IE kent wel window.event!
+						}
+						if(eventObject.target){ // Snapt de browser de target property van het event object? (moderne browser)
+							changeColor(eventObject.target);
+						} else { // De browser snapt de target property niet. Dan ben je IE en gebruiken we srcElement.
+							changeColor(eventObject.srcElement);
+						}	
+					}, false);
+				}
+				*/
+			}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+.footer-content {
+  text-align: center;
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

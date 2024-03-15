@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Associatieve Arrays</title>
+    </head>
+    <body>
+        
+        <script>
+
+            var persoon = new Object;
+            persoon["voornaam"] = "Kasper";
+            persoon["achternaam"] = "van Ling";
+            persoon["beroep"] = "Trainer";
+            persoon["leeftijd"] = 38;
+            persoon["woonplaats"] = "Badhoevedorp";
+
+            for( var key in persoon ){
+
+                document.write( "<strong>" + key + ":</strong> " + persoon[key] + "<br>" );
+
+            }
+
+        </script>
+
+    </body>
+</html>

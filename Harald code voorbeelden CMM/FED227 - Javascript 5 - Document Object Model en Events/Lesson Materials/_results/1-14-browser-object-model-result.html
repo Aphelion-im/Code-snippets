@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-14: Browser Object Model</title>
+		<style>
+			html{ font-size: 100%; font-family: sans-serif;}
+			#clickMe{
+				margin: 0 auto;
+				width: 150px;
+				background-color: rgba(0,200,0,1);
+				border: 1px solid rgba(50,255,50,1);
+				text-align: center;
+				
+				font-size: 0.9rem;
+				color: white;
+				padding: 1em;
+				border-radius: 0.5em;
+			}
+			
+			#clickMe:hover{
+				cursor: pointer;
+				background-color: rgba(0,230,0,1);
+				border: 1px solid rgba(50,255,50,1);
+			}
+			
+			h1{
+				border: 1px solid #CDCDCD;
+				padding: 0.8rem;
+				width: 70vw;
+				text-align:center;
+				font-size: 1.2rem;
+				margin: 1rem auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="clickMe" aria-role="button" onclick="openPopUp();">Open nieuw venster!</div>
+		
+		<script>
+			/* 	======================================================================
+				De Browser Object Model (window object)
+			=========================================================================== */
+			/* 
+				We hebben reeds veel geoefend met de .log() methode van het console-object.
+				Het console object is een child object van de window! Je kunt dus noteren:
+			*/
+			
+			window.console.log("Een string in de Developer Toolbar neerzetten");
+			
+			/*
+				Het window.location object bevat handige informatie over de url.
+			*/ 
+			var urlInfo = window.location; // location is een child object van de window!
+			var pageURL = window.location.href;	
+			var protocol = window.location.protocol;	
+			
+			
+			
+			/* 	======================================================================
+				Pop-ups maken
+			=========================================================================== */
+			/*
+				Met window.open() kun je een nieuw scherm laden. Dit wordt soms onderdrukt 
+				door de browser's anti spam maatregelen.
+			*/
+			var deDiv = document.getElementById("clickMe");
+			function openPopUp(){
+				var urlToOpen = "../pop-up.html";
+				var windowName = "Pop-up venster";
+				var left = (screen.width - 500) / 2;
+				var top = (screen.height - 500) / 4; 
+				var options = "width=500, height=500, top=" + top + ", left=" + left;
+				return window.open(urlToOpen, windowName, options); // Drie parameters (arguments)
+			}
+			
+			
+			
+			/* 	======================================================================
+				Printen
+			=========================================================================== */
+			// window.print();
+			
+			
+			
+			/* 	======================================================================
+				Dialogen
+			=========================================================================== */
+			// window.alert("Een eenvoudige melding");
+			// var zekerWeten = window.confirm("Weet u het zeker"); // Returns true or false.
+			// var userInput = window.prompt("Voer hier uw naam in:"); // Returns null, een lege string ("") of de input van de user (als string).
+			// console.log(userInput);
+			
+			var uwNaam; // Declareer een variabele voor de gebruiker's naam.
+			uwNaam = prompt("Voer uw naam in:");
+		
+			if(uwNaam == null){ // Gebruiker heeft op cancel gedrukt!
+				document.write("<h1>Beste bezoeker, welkom op onze website!</h1>");
+			} else if(uwNaam == ""){ // Gebruiker heeft niets ingevoerd en daarna op ok gedrukt.
+				document.write("<h1>Welkom op onze website, anoniempje.</h1>");
+			} else{ // Het was niet null (cancel), het was niet een lege string... Dus, het is goed!
+				document.write("<h1>Welkom op onze website, " + uwNaam + "!</h1>");
+			}
+			
+			/* 	======================================================================
+				Informatie over de webbrowser
+			=========================================================================== */
+			var browserInfo = window.navigator.userAgent
+			console.log(browserInfo);
+		</script>
+	</body>
+</html>

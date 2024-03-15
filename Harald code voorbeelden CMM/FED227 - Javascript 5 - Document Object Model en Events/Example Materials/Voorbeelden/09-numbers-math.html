@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Numbers en Math object</title>
+
+        <script>
+
+            function cijfers(){
+
+                var x = Math.PI;
+                document.getElementById("pi").innerHTML = x;
+
+                var y = x.toFixed(8);
+                document.getElementById("decimalen").innerHTML = y;
+
+                var z = Math.random();
+                document.getElementById("random").innerHTML = z;
+
+                var a = Math.round( 3.5 );
+                document.getElementById("round").innerHTML = a;
+
+                var b = Math.floor( 3.6 );
+                document.getElementById("floor").innerHTML = b;
+
+                var c = Math.ceil( 3.6 );
+                document.getElementById("ceil").innerHTML = c;
+
+            }
+
+        </script>
+
+    </head>
+    <body>
+        
+       <h1 id="titel">Numbers en het Math Object</h1>
+       <ul>
+           <li>toFixed(): <span id="decimalen"></span></li>
+           <li>Math.PI: <span id="pi"></span></li>
+           <li>Math.random(): <span id="random"></span></li>
+           <li>Math.round(3.6): <span id="round"></span></li>
+           <li>Math.floor(3.6): <span id="floor"></span></li>
+           <li>Math.ceil(3.6): <span id="ceil"></span></li>
+           <li>toString(): <span>
+
+              <script>
+                  var bin = 255;
+                  var n = bin.toString(2);
+                  document.write( n );
+              </script>
+
+           </span></li>
+       </ul>
+
+       <a href="#" onclick="cijfers();">Klikmij</a>
+
+    </body>
+</html>

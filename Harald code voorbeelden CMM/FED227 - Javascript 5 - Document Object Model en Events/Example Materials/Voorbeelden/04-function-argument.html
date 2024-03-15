@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Functie met argument</title>
+    </head>
+    <body>
+        
+        <script>
+
+            var eigennaam = prompt( "wat is uw naam?" );
+
+        	function begroet( dagdeel, naam ){
+				document.write( "<h1>" + dagdeel + " " + naam + "</h1>" );
+			}
+
+			// aanroep van de functie met script
+			begroet( "Goedemiddag" , eigennaam );
+
+
+
+        </script>
+
+        <!-- vanuit de html aangeroepen functie -->
+        <a href="#" onclick="begroet( 'Goedenavond', eigennaam );">Klik mij</a>
+
+    </body>
+</html>

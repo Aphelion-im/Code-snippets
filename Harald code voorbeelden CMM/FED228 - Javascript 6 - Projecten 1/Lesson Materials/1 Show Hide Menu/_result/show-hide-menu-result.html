@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Show / Hide Menu</title>
+</head>
+<body>
+	<h1>CMM Fine Dining</h1>
+	<input type="button" aria-role="button" id="showHideMenu" value="Toon of verberg ons menu">
+	
+	<section id="ourMenu">
+		<h2 title="Try our delicious entrees!">Dinner Entrees</h2> 
+		<nav> 
+			<ul>
+				<li>Thai-style Halibut
+					<ul>
+						<li>coconut milk</li> 
+						<li>pan-fried halibut</li> 
+						<li>early autumn vegetables</li> 
+						<li>Thai spices </li>
+					</ul> 
+				</li>
+				<li>House Grilled Panini
+					<ul>
+						<li>prosciutto</li> 
+						<li>provolone</li> 
+						<li>avocado</li> 
+						<li>sourdough roll</li>
+					</ul>
+				</li>
+				<li>Southwest Slider
+					<ul>
+						<li>whole chiles</li> 
+						<li>hamburger</li> 
+						<li>pepperjack cheese</li> 
+						<li>multigrain roll</li>
+					</ul> 
+				</li>
+			</ul> 
+		</nav>
+	</section>
+	<script>
+		window.onload = function(){
+			/* 	======================================================================
+				Object sniffing
+			=========================================================================== */
+			if(!document.getElementById("showHideMenu")) return false;
+			if(!document.getElementById("ourMenu")) return false;
+			
+			
+			
+			/* 	======================================================================
+				Global variables
+			=========================================================================== */
+			var menuVisible = true;
+		
+		
+		
+			/* 	======================================================================
+				Functions
+			=========================================================================== */
+			function showHideOurMenu(){
+				if(menuVisible){
+					document.getElementById("ourMenu").style.display = "none";
+					menuVisible = false;
+				} else{
+					document.getElementById("ourMenu").style.display = "block";
+					menuVisible = true;
+				}
+			}
+		
+		
+		
+			/* 	======================================================================
+				Event Binding & Initialisation
+			=========================================================================== */
+			showHideOurMenu(); // Als het window geladen is het menu direct verbergen.
+		
+			document.getElementById("showHideMenu").onclick = function(){
+				showHideOurMenu();
+			}	
+		} // End window.onload()
+	</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+#formholder {
+    width : 500px;
+    padding : 20px;
+    background-color : #BBB; 
+    border-radius : 20px;
+    font-family : "Helvetica Neue", "Trebuchet MS", Arial, sans-serif;
+    font-size : 14px;
+    color : #000;
+    margin-left : auto;
+    margin-right : auto;
+    border : 2px solid #999	;
+}
+
+input.veld {
+
+    border-radius : 20px;
+    padding : 10px;
+    border : 2px solid #999;
+}
+
+.center {
+    padding-left : 80px;
+}
+
+.error {
+
+    color : red;
+    font-size : 14px;
+    padding-left : 8px;
+    display : none;
+
+}
+
+fieldset {
+
+    border-width : 2px;
+    border-color : white;
+    border-style : solid;
+    border-radius : 14px;
+}
+
+legend {
+    padding-left : 4px;
+    padding-right : 4px;
+    font-size : 16px;
+    font-style : italic;
+    color : white;
+}
+/*
+input[type="text"]{
+
+    color : #AAA;
+    font-style : italic;
+
+}*/
+
+.noJs{
+    display: none;
+}
+
+.yesJs{
+    display: block;
+}

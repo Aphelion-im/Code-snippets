@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Functions lokale of globale var</title>
+    </head>
+    <body>
+        
+        <script>
+
+            var naam = "Kasper"; // globale var
+
+        	function begroet(){
+
+                var leeftijd = 18; // lokale var
+				document.write( "<h1>Goedemiddag " + naam + "</h1>" ); // globale var
+                document.write( "<h1>Jij bent " + leeftijd + " jaar</h1>" );
+
+			}
+
+			// aanroep van de functie met script
+			begroet();
+
+
+
+        </script>
+
+        <!-- vanuit de html aangeroepen alert met de var leeftijd -->
+        <a href="#" onclick="alert(leeftijd);">Klik mij</a>
+
+    </body>
+</html>

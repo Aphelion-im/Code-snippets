@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>setInterval</title>
+	<style>
+		body{ margin: 0; }
+		#blokje{ width: 50px; height: 50px; background-color: red; position: absolute;}
+	</style>
+</head>
+<body>
+	<button id="startBlokje">Start</button>
+	<button id="stopBlokje">Stop</button>
+	<div id="blokje"></div>
+	
+	<script>
+		/* 	======================================================================	
+			Initialise
+		=========================================================================== */
+		var startBlokje = document.getElementById("startBlokje");
+		var stopBlokje = document.getElementById("stopBlokje");
+		var blokje = document.getElementById("blokje");		
+		var blokjeLeft = 0;
+		var blokjeTimer;
+		
+		
+		/* 	======================================================================	
+			Function definitions
+		=========================================================================== */
+		function startMove(interval){
+			blokjeTimer = window.setInterval(moveBlokjeAutomatically, interval); // Om de X-seconden een functie uitvoeren.
+		}
+		
+		function stopMove(){
+			window.clearInterval(blokjeTimer);
+		}
+		
+		function moveBlokjeAutomatically(){
+			if(blokjeLeft >= window.innerWidth - 50){ // Ben je groter dan het scherm? Dan wordt je 0.
+				blokjeLeft = 0;
+			} else{
+				blokjeLeft += 5;
+			}
+			
+			blokje.style.left = blokjeLeft + "px";
+		}
+		
+		
+		
+		/* 	======================================================================	
+			Event handlers
+		=========================================================================== */
+		/* Methode 3: 	addEventListener is de aangeraden methode om events te koppelen.
+						Maar let op: niet compatible met IE8 en eerder.
+		*/
+		
+		startBlokje.addEventListener("click", function(){
+			startMove(25);
+		}, false);
+		
+		stopBlokje.addEventListener("click", function(){
+			stopMove();
+		}, false);
+		
+		
+		
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

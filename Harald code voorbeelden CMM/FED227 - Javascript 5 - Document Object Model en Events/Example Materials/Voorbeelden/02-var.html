@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Variabelen</title>
+
+        <script>
+        	// een alert oproepen
+			var zekerweten = confirm( "Weet u het zeker?" );
+
+			var naam = prompt( "Wat is uw naam?", "Vul uw naam hierin..." );
+
+            var leeftijd = prompt("Hoe oud ben je?");
+
+            leeftijd = parseInt(leeftijd);
+
+            leeftijd += 10;
+
+        </script>
+
+    </head>
+    <body>
+        
+        <h1>Variabelen kunnen Strings, Numbers of Booleans zijn</h1>
+
+        <script>
+
+        	document.write( "Weet u het zeker?: " + zekerweten + "<br>" );
+
+        	document.write( "<h2>Hallo " + naam + "</h2><p>Jij bent " + leeftijd + " jaar oud</p>" );
+
+        </script>
+        
+    </body>
+</html>

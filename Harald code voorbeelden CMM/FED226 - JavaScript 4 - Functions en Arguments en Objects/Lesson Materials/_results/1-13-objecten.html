@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-13: Objecten</title>
+	</head>
+	<body>
+		<script>
+			/* 	======================================================================
+				Objecten maken met ‘var’
+			=========================================================================== */
+			var vliegtuigObject = {
+				aantalMotoren 	: 4,
+				type			: "passenger",
+				propellor		: false,
+				
+				talkToPassengers : function(){
+					window.alert("Hello party people, this is Captain Kim speaking. Welcome aboard.");
+				}
+			};
+			
+			// Toegang tot jouw properties van het object:
+			vliegtuigObject.aantalMotoren;
+			vliegtuigObject['aantalMotoren']; // Named index key (denk aan de array).
+			//vliegtuigObject.talkToPassengers();
+			vliegtuigObject.aantalStoelen = 250; // Een property later nog even aanmaken.
+			
+			
+			
+			/* 	======================================================================
+				Method chaining
+			=========================================================================== */
+			// vliegtuigObject.talkToPassengers().talkToPassengers();
+			// Dit doen we veel in jQuery straks.
+			
+			
+			
+			/* 	======================================================================
+				Object Prototype (class) 
+			=========================================================================== */		
+			function Car(theBrand, type, price){  // Object Prototype (moeder object/ de blue print).
+				this.brand = theBrand;
+				this.type = type;
+				this.price = "€" + price;
+				this.speed = 0;
+				
+				this.accelerate = function(byHowMuch){ // Method aanmaken.
+					this.speed += byHowMuch;
+				}
+			}
+			
+			// new Car noemen we de Object Constructor 'opdracht'.
+			var car1 = new Car("Audi", "SUV", 20000); // Object instance (clone van de blue print).
+			var car2 = new Car("Toyota", "Hybrid", 35000); // Object instance.
+			
+			car1.accelerate(1);
+			car1.accelerate(45);
+			car1.accelerate(5);
+			car1.accelerate(-10);
+			car1.accelerate(20);
+			console.log(car1.speed);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-16: Events</title>
+		<link href="../css/event-styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- 
+			Events koppelen aan een HTML-element noemen we 'binden'.
+			Eventbinding kan op verschillende manieren gebeuren.
+			
+			Methode 1: HTML Event Handlers 
+			Niet gebruiken:  Deze methode is achterhaald. We willen natuurlijk helemaal
+			geen JavaScript in onze HTML-code hebben staan vanwege de principes
+			graceful degredation en progressive enhancement.
+		 -->
+		<button role="button" aria-hidden="true" id="buttonForBlue" onclick="moveBall(document.getElementById('ballBlue'), 50);">Move ballBlue<br>Methode #1</button>
+		<button role="button" aria-hidden="true" id="buttonForGreen">Move ballGreen<br>Methode #2</button>
+		<button role="button" aria-hidden="true" id="buttonForRed">Move ballRed<br>Methode #3</button>
+		
+		<div id="balls">
+			<div id="ballBlue" class="ball">#1</div>
+			<div id="ballGreen" class="ball">#2</div>
+			<div id="ballRed" class="ball">#3</div>
+			<div id="ballYellow" class="ball"></div>
+			<div id="ballMagenta" class="ball"></div>
+		</div>
+		
+		<button role="button" aria-hidden="true" id="buttonForMagenta">Stop de magenta ball!</button>
+		
+		<script>
+			/* 	======================================================================	
+				Initialise
+			=========================================================================== */
+			var buttonForBlue = document.getElementById("buttonForBlue");
+			var buttonForGreen = document.getElementById("buttonForGreen");
+			var buttonForRed = document.getElementById("buttonForRed");
+		
+			var ballBlue = document.getElementById("ballBlue");
+			var ballGreen = document.getElementById("ballGreen");
+			var ballRed = document.getElementById("ballRed");
+			var ballYellow = document.getElementById("ballYellow");
+		
+			// Bij het laden van de browser de style.left instellen op 0 voor elke bal. 
+			ballBlue.style.left = "0px";
+			ballGreen.style.left = "0px";
+			ballRed.style.left = "0px";
+			ballYellow.style.left = "0px";
+			ballYellow.style.top = "0px";
+		
+			// moveBall function
+			function moveBall(welkebal, hoeveelPixels){
+				/*
+					moveBall() verwacht twee argumenten:
+					1. welkbal (moet een HTML-object zijn)
+					2. hoeveelPixels (moet een number zijn)
+				*/
+		
+				var currentLeft = parseInt(welkebal.style.left); // Huidige left waarde opvragen en omzetten naar een number datatype. Bijvoorbeeld de string "50px" omzetten naar number 50.
+				var newLeft = currentLeft + hoeveelPixels; // Huidige left waarde ophogen met de opgegeven hoeveelPixels.
+			
+				if(newLeft <(window.innerWidth -50)){ // Alleen verder verplaatsen als het ball niet uitbeeld dreigt te raken.
+					welkebal.style.left = newLeft + "px"; // Style updaten.
+				} else{ // Anders het ball terugzetten naar 0
+					welkebal.style.left = 0 + "px";
+				}
+			}
+			
+			
+	
+			/* 	======================================================================	
+				Methode #2: DOM event handler
+			=========================================================================== */
+			/* 
+				Compatible met alle moderne browsers.
+				Nadeel: Je kunt geen argumenten meegeven aan de functie!
+				Oplossing: We moeten een anonieme functie gebruiken als een soort 'wrapper'.
+			*/
+			buttonForGreen.onclick = moveBall(buttonForGreen, 50); // Werkt helaas niet!			
+			buttonForGreen.onclick = function(){ // Anonieme function wrapper gebruiken, zodat we argumenten kunnen meegeven.
+				moveBall(ballGreen, 50);
+			};
+		
+		
+		
+			/* 	======================================================================	
+				Methode #3: addEventListener
+			=========================================================================== */
+			/* 
+				Dit is de aangeraden methode.
+				De .addEventListener() methode vereist 3 argumenten:
+			
+				1. 	Het event waarnaar geluisterd moet worden.
+				2. 	De functie die moet worden uitgevoerd als het event plaats vindt.
+				3. 	Event flow: een boolean die bepaald hoe de event flow plaats vindt. 
+					(zie boek en example materials). 
+					De default is false (event bubbling: van meest specifieke tag naar 
+					minst specifieke tag).
+			*/
+			buttonForRed.addEventListener('click', function(){
+				moveBall(ballRed, 50);
+			}, false);
+		
+			
+			
+			/* 	======================================================================	
+				Het Event Object
+			=========================================================================== */
+			/*	Elke keer als er een event plaats vindt is er een event object.
+				Het event object bevat handige informatie zoals:
+			
+				- Welk element het event triggert.
+				- Welke toetsenbord knop de gebruiker indrukte bij een keypress event.
+				- Welk gedeelte van de viewport was aangeklikt.
+				
+				Zie je boek voor handige properties van het event object (blz 262).
+				
+			*/
+			function showEventObject(e){
+				console.log(e);
+				console.log(e.target, e.type, e.screenX);
+			}
+			
+			ballRed.addEventListener('click', function(e){ // Het event object is altijd de eerste variabele van de anonieme functie.
+				showEventObject(e); // De functie uitvoeren en het event object meegeven aan de functie.
+			});
+			
+			// Veel korter is: ballRed.addEventListener('click', showEventObject);
+			
+			
+			/* 	======================================================================	
+				KeyCodes van keypress, keyup en keydown events
+			=========================================================================== */
+			window.addEventListener('keydown', function(e){
+				console.log(e.keyCode);						
+			
+				if(e.keyCode == 37){ // left = 37
+					var newLeft = parseInt(ballYellow.style.left) - 5 + "px";
+					ballYellow.style.left = newLeft;
+				} else if(e.keyCode == 38){ // up = 38
+					var newTop = parseInt(ballYellow.style.top) - 5 + "px";
+					ballYellow.style.top = newTop;
+				} else if(e.keyCode == 39){ // right = 39
+					var newRight = parseInt(ballYellow.style.left) + 5 + "px";
+					ballYellow.style.left = newRight;
+				} else if(e.keyCode == 40){ // down = 40
+					var newDown = parseInt(ballYellow.style.top) + 5 + "px";
+					ballYellow.style.top = newDown;
+				}
+			}, false);
+			
+			
+			/* 	======================================================================	
+				window.onload
+			=========================================================================== */		
+			window.onload = function(){
+				// Inits
+				var ballMagenta = document.getElementById("ballMagenta");
+				var moveBy = 0;
+				ballMagenta.style.left = "0px";
+				
+				// Functions
+				function moveAutomatically(){
+					moveBy += 5;
+					ballMagenta.style.left = moveBy + "px";
+				}
+		
+				var timer = setInterval(moveAutomatically, 500); // Beweeg elke halve seconde een stapje.
+				
+				// Events
+				document.getElementById("buttonForMagenta").addEventListener('click', function(){
+					clearInterval(timer);
+				}, false);
+			};
+			
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

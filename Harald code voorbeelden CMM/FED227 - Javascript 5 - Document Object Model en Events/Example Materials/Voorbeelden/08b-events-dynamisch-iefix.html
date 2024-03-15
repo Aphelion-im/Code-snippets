@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Events</title>
+
+        <style>
+
+           div {
+
+                width : 200px;
+                height: 200px;
+                float : left;
+                margin-right : 10px;
+                margin-bottom : 10px;
+                cursor : pointer;
+                background-color: red;
+
+           }
+
+        </style>  
+
+
+    </head>
+    <body>
+        
+        <h1 id="titel">Wat een hoop divs</h1>
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        
+
+
+        <script>
+
+            function veranderKleur(e){
+
+                if( e == null ){
+                    // IE kent geen 
+                    var e = window.event;
+
+                }
+                if( e.target ){
+
+                    var element = e.target;
+
+                } else {
+                    //Ie 7 en 8
+                    var element = e.srcElement;
+
+                }
+
+                if( element.style.backgroundColor == "blue" ){
+
+                    element.style.backgroundColor = "red";
+
+                } else {
+
+                    element.style.backgroundColor = "blue";
+
+                }
+
+            }
+
+            window.onload = function(){
+                var divs = document.getElementsByTagName( "div" );
+                for( var i = 0; i <= divs.length; i++ ){
+
+                    divs[i].onclick = veranderKleur;
+
+                }
+            }
+
+
+            var header = document.getElementById( "titel" );
+            header.onclick = veranderFont;
+
+            function veranderFont(){
+
+                header.style.fontSize = "80px";
+
+
+            }
+            
+
+        </script>
+       
+
+    </body>
+</html>

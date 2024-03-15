@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Math random spelletje</title>
+
+        <script>
+
+            function worp(){
+
+               var x = Math.random();
+               x = x * 6;
+               return Math.ceil( x );
+
+            }
+
+            function toonWorpen( aantal ){
+
+                var tekst = "Resultaat " + aantal + " worpen: ";
+                
+                for( var i = 1; i <= aantal; i++ ){
+
+                    tekst += worp() + " ";
+
+                }
+
+                document.body.innerHTML = tekst;
+
+            }
+
+        </script>
+
+    </head>
+    <body onload="toonWorpen(10);">
+        
+       
+
+    </body>
+</html>

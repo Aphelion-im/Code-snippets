@@ -1,0 +1,26 @@
+Public key:
+4780bcc0dddcf771e505b68197ce5f56
+
+Private key:
+4562f2c5a60d9ceac059b08bd5fbbae30f546ab4
+
+TS:
+1
+
+MD5 Hash (TS + Private key + public key):
+d9ed2fbdb825b21f96f7f62eb48cecef
+
+
+http://gateway.marvel.com/v1/public/comics?ts=1&apikey=4780bcc0dddcf771e505b68197ce5f56&hash=d9ed2fbdb825b21f96f7f62eb48cecef
+
+
+Example
+---
+https://developer.marvel.com/documentation/authorization
+-->
+1234 = Public key
+abcd = Private key
+ts = 1
+11234abcd, Gives md5 hash: ffd275c5130566a2916217b101f26150
+http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
+

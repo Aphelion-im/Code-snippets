@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Document Object</title>
+    </head>
+    <body>
+        
+        <h1 id="hoofd"><em>Dit is een titel</em></h1>
+
+        
+        <form name="test">
+            Naam: <input type="text" name="naam" value="Kasper">
+        </form>
+
+        <form>
+            Adres: <input type="text" name="adres" value="Daltonlaan 700">
+        </form>
+
+
+
+        <script>
+
+            document.bgColor = "#F00";
+            document.title = "Document Object Model voorbeelden";
+
+            var inhoud = document.test.naam.value;
+            alert( inhoud );
+
+            var adres = document.forms[1].adres.value;
+            alert( adres );
+
+            var titel = document.getElementById( "hoofd" ).innerHTML;
+            alert( titel );
+
+            function changeTitel(){
+
+                document.getElementById( "hoofd" ).innerHTML = "<em>Dit is een andere titel</em>"
+
+            }
+
+
+        </script>
+
+        <a href="#" onclick="changeTitel();">Klikmij</a>
+
+    </body>
+</html>

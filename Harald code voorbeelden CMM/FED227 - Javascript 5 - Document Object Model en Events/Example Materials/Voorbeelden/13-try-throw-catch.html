@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Try, Throw & Catch</title>
+
+        <script>
+
+          function bereken(){
+            try{
+
+              // haal het getal uit het veld getal
+              var num = wortel.getal.value;
+
+              // als dat geen cijfer is
+              if( isNaN(num) ){
+
+                  // breek de try af en ga door naar de catch en throw de error message
+                  throw ("Dat is geen getal");
+
+              }
+
+              // is het getal negatief
+              if( num < 0 ){
+
+                  // breek de try af en ga door naar de catch en throw de error message
+                  throw( "Geen negatieve waardes!" );
+
+              }
+
+              // als het allemaal klopt, haal de wortel uit het getal
+              wortel.uitkomst.value = Math.sqrt(num);
+              // en maak het veld wit
+              wortel.getal.style.backgroundColor = "#FFF";
+
+            } catch ( error ){
+
+              alert( error );
+              wortel.getal.style.backgroundColor = "#F0F"
+              wortel.getal.focus();
+
+            }
+
+
+          }
+          
+        </script>
+
+    </head>
+    <body>
+        
+        <form name="wortel">
+
+          Getal: <input name="getal" type="text" onblur="bereken();">
+
+          <br>
+
+          Wortel: <input name="uitkomst" type="text">
+
+        </form>
+       
+    </body>
+</html>

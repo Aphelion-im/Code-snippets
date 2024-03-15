@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Timer Huiswerk</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		
+		
+		#container{
+			position: relative;
+			background-color: black;
+			margin: 0 auto;
+			width: 1000px;
+			height: 500px;
+		}
+		
+		#blokje{
+			position: absolute;
+			left: 0px;
+			top: 50%;
+			margin: -12.5px 0 0 0;
+			background-color: white;
+			width: 25px;
+			height: 25px;
+		}
+		
+		#moveButton{
+			margin: 1rem auto;
+			display: block;
+			width: 100px;
+			height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="blokje"></div>
+	</div>
+	<button id="moveButton">Move!</button>
+	<script>
+		window.onload = function(){
+			/* 	======================================================================	
+				Object sniffing
+			=========================================================================== */	
+			if(!document.getElementById("container") || !document.getElementById("blokje") || !document.getElementById("moveButton")) return false;
+			
+			
+			
+			/* 	======================================================================	
+				Variables
+			=========================================================================== */	
+			var container = document.getElementById("container");
+			var blokje = document.getElementById("blokje");
+			var moveButton = document.getElementById("moveButton");
+			
+			
+			
+			/* 	======================================================================	
+				Functions
+			=========================================================================== */	
+			function startMove(){
+				console.log("User klikte op de button! Start moving!");	
+			}
+			
+			
+			/* 	======================================================================	
+				Event Binding
+			=========================================================================== */	
+			moveButton.addEventListener("click", function(){
+				startMove();
+			});
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

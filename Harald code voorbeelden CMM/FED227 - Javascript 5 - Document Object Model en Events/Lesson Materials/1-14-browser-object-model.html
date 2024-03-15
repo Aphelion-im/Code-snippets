@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Oefening 1-14: Browser Object Model</title>
+		<style>
+			html{ font-size: 100%; font-family: sans-serif;}
+			#clickMe{
+				margin: 0 auto;
+				width: 150px;
+				background-color: rgba(0,200,0,1);
+				border: 1px solid rgba(50,255,50,1);
+				text-align: center;
+				
+				font-size: 0.9rem;
+				color: white;
+				padding: 1em;
+				border-radius: 0.5em;
+			}
+			
+			#clickMe:hover{
+				cursor: pointer;
+				background-color: rgba(0,230,0,1);
+				border: 1px solid rgba(50,255,50,1);
+			}
+			
+			h1{
+				border: 1px solid #CDCDCD;
+				padding: 0.8rem;
+				width: 70vw;
+				text-align:center;
+				font-size: 1.2rem;
+				margin: 1rem auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="clickMe" aria-role="button">Open nieuw venster!</div>
+		<a href="#" id="closeMe1" aria-role="button">Sluit venster</a> - 
+		<a href="#" id="closeMe2" aria-role="button">Sluit hoofdvenster</a>-   
+		
+		
+		
+		<script>
+			/* 	======================================================================
+				De Browser Object Model (window object)
+			=========================================================================== */
+			/* 
+				We hebben reeds veel geoefend met de .log() methode van het console-object.
+				Het console object is een child object van de window! Je kunt dus noteren:
+			*/
+			
+			window.console.log("Een string in de Developer Toolbar neerzetten", window);
+            console.log(window.location)
+			
+			/*
+				Het window.location object bevat handige informatie over de url.
+			*/ 
+			
+			
+			
+			/* 	======================================================================
+				Pop-ups maken
+			=========================================================================== */
+			/*
+				Met window.open() kun je een nieuw scherm laden. Dit wordt soms onderdrukt 
+				door de browser's anti spam maatregelen.
+			*/
+			
+            var deKnop = document.getElementById('clickMe');
+            //window.open(url, naam, options);
+            //werkt vaak niet in de root
+            //of door passiefe events zoals lad, unload, mouseover
+            
+            var mijnVenster;
+            
+            function openPopup(){
+                var url = 'pop-up.html';
+                var windowName = 'pop-up Venster';
+                var left = (screen.width -  500)/2; //comp zn width, 500px vanaf (mijn window) en dan gedeeld door 2. Dat is dan ongeveer de helft.
+                var top = (screen.height - 400)/2;
+                var options = 'Width=500, height=400, top='+ top +', left='+ left;
+                    
+                    
+                    
+                return window.open(url, windowName, options);
+            }
+            
+            deKnop.addEventListener('click', function(){
+                mijnVenster = openPopup();
+            });
+            
+            
+            var sluitKnop = document.getElementById('closeMe1');
+            
+            sluitKnop.addEventListener('click', function(event){
+                event.preventDefault(); //blokkeer de link zijn natuurlijke gedrag.
+                if(mijnVenster){ //existency check. Bestaat het venster wel?
+                    mijnVenster.close();
+                }   
+            });
+            
+            
+            var sluitKnop2 = document.getElementById('closeMe2');
+            
+            sluitKnop2.addEventListener('click', function(event){
+                event.preventDefault(); //blokkeer de link zijn natuurlijke gedrag.
+//                mijnVenster.close();
+                window.close();
+            });
+			
+			
+			/* 	======================================================================
+				Printen
+			=========================================================================== */
+			//window.print();
+			
+			
+			
+			/* 	======================================================================
+				Dialogen
+			=========================================================================== */
+            
+			//window.alert('tekst');
+            //confirm('bericht'); //returned een beelean
+            //prompt('bericht') //returned antwoord (string) of null
+            
+			
+			
+			
+			/* 	======================================================================
+				Informatie over de webbrowser
+			=========================================================================== */
+            
+            console.log(window.navigator.userAgent);
+            console.log(window.navigator.vendor);
+			
+		</script>
+	</body>
+</html>
