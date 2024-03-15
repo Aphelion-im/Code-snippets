@@ -1,6 +1,6 @@
 # Miscellaneous code snippets
 
-Updated: 24-3-2021
+Updated: 15-3-2024
 
 
-Miscellaneous, experimental scripts & code snippets
+Miscellaneous, experimental scripts & code snippets.
