@@ -1,0 +1,9 @@
+.spin {
+  animation: spin 5s infinite linear; /* Create React App has: 20s inifite linear animation */
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
